@@ -41,6 +41,8 @@ out/
 *.njsproj
 *.sln
 *.swp
+.claude/
+.claude.json
 
 # --- Bases de Datos ---
 *.db
