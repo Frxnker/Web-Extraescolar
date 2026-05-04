@@ -108,7 +108,14 @@ onAuthStateChanged(auth, (user) => {
         document.addEventListener('click', () => dropdown.classList.remove('active'));
       }
       
-      if (logoutBtn) logoutBtn.addEventListener('click', () => signOut(auth));
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+          const uid = auth.currentUser ? auth.currentUser.uid : null;
+          if (uid) localStorage.removeItem(`photo_${uid}`);
+          signOut(auth);
+          showToast("Sesión cerrada", "info");
+        });
+      }
       if (addServiceBtn) addServiceBtn.addEventListener('click', openServiceModal);
       
       // Open Account Page
@@ -182,12 +189,30 @@ onAuthStateChanged(auth, (user) => {
         window.location.href = path;
       }
     }
+    updateNavAvatar(user);
     lucide.createIcons();
     loadComments();
     updateStats();
     loadUserFavorites();
   }
 });
+
+function updateNavAvatar(user) {
+  if (!user) return;
+  const trigger = document.getElementById('profile-trigger');
+  if (!trigger) return;
+  
+  const photo = localStorage.getItem(`photo_${user.uid}`) || user.photoURL;
+  const initial = user.email.charAt(0).toUpperCase();
+  
+  if (photo) {
+    trigger.innerHTML = `<img src="${photo}" alt="Avatar">`;
+    trigger.style.background = 'transparent';
+  } else {
+    trigger.innerHTML = initial;
+    trigger.style.background = 'var(--primary)';
+  }
+}
 
 async function updateStats() {
   const statActivities = document.getElementById('stat-activities');
@@ -221,6 +246,12 @@ async function loadComments() {
   if (!commentsList) return;
 
   try {
+    // 1. Obtener perfiles de usuario para tener fotos actualizadas
+    const usersSnap = await getDocs(collection(db, "usuarios"));
+    const usersMap = {};
+    usersSnap.forEach(u => { usersMap[u.data().uid] = u.data().photoURL; });
+
+    // 2. Cargar comentarios
     const q = query(collection(db, "comentarios"), orderBy("timestamp", "desc"));
     const querySnapshot = await getDocs(q);
     commentsList.innerHTML = '';
@@ -238,13 +269,14 @@ async function loadComments() {
       const stars = "★".repeat(data.rating || 5) + "☆".repeat(5 - (data.rating || 5));
       const isOwner = currentUser && currentUser.uid === data.authorUid;
       
+      // Foto: UsuariosMap (Actual) > Data.authorPhoto (Congelada) > Inicial
+      const authorPhoto = usersMap[data.authorUid] || data.authorPhoto;
+      
       const commentDiv = document.createElement('div');
       commentDiv.style.cssText = 'background:var(--surface); padding:1.5rem; border-radius:18px; border:1px solid var(--border); display:flex; gap:15px; margin-bottom:1rem; position:relative;';
       
-      const authorPhoto = data.authorPhoto;
-      
       commentDiv.innerHTML = `
-        <div style="width:40px; height:40px; border-radius:50%; background:var(--primary); color:white; display:flex; align-items:center; justify-content:center; font-weight:700; flex-shrink:0; overflow:hidden;">
+        <div class="profile-circle" style="width:40px; height:40px; border-radius:50%; background:var(--primary); color:white; display:flex; align-items:center; justify-content:center; font-weight:700; flex-shrink:0; overflow:hidden;">
           ${authorPhoto ? `<img src="${authorPhoto}" style="width:100%; height:100%; object-fit:cover;">` : initial}
         </div>
         <div style="flex:1;">
@@ -392,6 +424,7 @@ async function populateProfilePage(user) {
             localStorage.setItem(`photo_${user.uid}`, base64);
             
             showToast("¡Foto de perfil actualizada!", "success");
+            updateNavAvatar(user); // ACTUALIZACIÓN INSTANTÁNEA DEL MENÚ SUPERIOR
             
             if (imgDisplay && initialDisplay) {
               imgDisplay.src = base64;
