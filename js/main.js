@@ -175,7 +175,7 @@ onAuthStateChanged(auth, (user) => {
 
       // If on profile page and not logged in, redirect home
       if (window.location.pathname.includes('perfil.html')) {
-        const path = window.location.pathname.includes('pages/') ? '../Index.html' : 'Index.html';
+        const path = window.location.pathname.includes('pages/') ? '../index.html' : 'index.html';
         window.location.href = path;
       }
     }
