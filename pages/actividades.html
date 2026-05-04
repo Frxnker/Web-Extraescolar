@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todas las Actividades | Extraescolar.com</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <!-- DETAILS MODAL -->
+  <div id="details-modal" class="modal">
+    <div class="modal-content" style="max-width: 800px;">
+      <button id="details-close" class="modal-close"><i data-lucide="x"></i></button>
+      <div id="details-content" class="details-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+        <!-- Content will be injected here -->
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body { padding-top: 80px; }
+    .search-container { margin-bottom: 4rem; }
+    .act-grid { min-height: 400px; }
+  </style>
+</head>
+
+<body class="dark-mode">
+  <!-- Mobile Navigation Overlay -->
+  <div class="mobile-overlay" id="mobile-overlay"></div>
+  <nav class="mobile-nav" id="mobile-nav">
+    <ul id="mobile-menu-list">
+      <li><a href="../index.html">Inicio</a></li>
+      <li><a href="actividades.html">Actividades</a></li>
+      <li><a href="../index.html#proceso">Cómo Funciona</a></li>
+      <li id="user-actions-mobile">
+        <button id="auth-trigger-mobile" class="btn-primary" style="width:100%; margin-top: 1rem;">Acceder</button>
+      </li>
+    </ul>
+  </nav>
+
+  <header>
+    <button class="menu-toggle" id="menu-toggle"><i data-lucide="menu"></i></button>
+    <a href="../index.html" class="brand">
+      <i data-lucide="graduation-cap"></i> Web-<span>Extraescolar</span>
+    </a>
+    <nav class="nav-links">
+      <a href="../index.html">Inicio</a>
+      <a href="#actividades">Actividades</a>
+      <a href="../index.html#proceso">Cómo Funciona</a>
+    </nav>
+    <div class="nav-actions">
+      <div id="user-actions" class="user-actions-container">
+        <button id="auth-trigger" class="btn-primary">Iniciar Sesión</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="actividades">
+      <div class="reveal visible">
+        <div class="section-label">Marketplace</div>
+        <h1>Descubre todas las <em>Actividades</em></h1>
+        <p class="section-intro">Utiliza los filtros para encontrar la actividad perfecta para ti.</p>
+      </div>
+
+      <!-- Search & Filter Bar -->
+      <div class="search-container reveal visible" style="max-width: 1000px;">
+        <div class="search-bar">
+          <div class="search-input">
+            <i data-lucide="search"></i>
+            <input type="text" id="service-search" placeholder="¿Qué actividad buscas?">
+          </div>
+          <div class="filter-group">
+            <select id="filter-category">
+              <option value="all">Todas las categorías</option>
+              <option value="deportes">Deportes</option>
+              <option value="idiomas">Idiomas</option>
+              <option value="tecnologia">Tecnología</option>
+              <option value="arte">Arte y Música</option>
+              <option value="cocina">Cocina</option>
+              <option value="ciencia">Ciencia</option>
+              <option value="refuerzo">Refuerzo Escolar</option>
+              <option value="baile">Baile y Danza</option>
+              <option value="ajedrez">Ajedrez</option>
+            </select>
+            <button class="btn-primary" id="btn-search">Filtrar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Categories -->
+      <div class="cat-quick-grid reveal visible">
+        <div class="cat-chip" data-cat="deportes"><i data-lucide="trophy"></i><span>Deportes</span></div>
+        <div class="cat-chip" data-cat="idiomas"><i data-lucide="languages"></i><span>Idiomas</span></div>
+        <div class="cat-chip" data-cat="tecnologia"><i data-lucide="cpu"></i><span>Tecnología</span></div>
+        <div class="cat-chip" data-cat="arte"><i data-lucide="palette"></i><span>Arte</span></div>
+        <div class="cat-chip" data-cat="cocina"><i data-lucide="utensils"></i><span>Cocina</span></div>
+        <div class="cat-chip" data-cat="ciencia"><i data-lucide="flask-conical"></i><span>Ciencia</span></div>
+        <div class="cat-chip" data-cat="refuerzo"><i data-lucide="book-open"></i><span>Refuerzo</span></div>
+        <div class="cat-chip" data-cat="baile"><i data-lucide="music"></i><span>Baile</span></div>
+        <div class="cat-chip" data-cat="ajedrez"><i data-lucide="grid"></i><span>Ajedrez</span></div>
+      </div>
+
+      <div class="act-grid" id="activities-container">
+        <!-- Dynamic content -->
+      </div>
+    </section>
+  </main>
+
+  <!-- FLOATING ACTION BUTTON -->
+  <button id="add-service-trigger-fab" class="fab" title="Publicar Servicio">
+    <i data-lucide="plus"></i>
+  </button>
+
+  <!-- ADD SERVICE MODAL -->
+  <div class="modal" id="service-modal">
+    <div class="modal-content">
+      <button class="modal-close" id="service-close"><i data-lucide="x"></i></button>
+      <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem; text-align: center;">Publicar Nuevo Servicio</h2>
+      <form id="service-form">
+        <input type="text" id="srv-name" placeholder="Título" required style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid var(--border);">
+        <textarea id="srv-desc" placeholder="Descripción" required style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid var(--border); min-height: 80px;"></textarea>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-bottom: 10px;">
+          <select id="srv-cat" style="padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--background); color: var(--text);">
+            <option value="deportes">Deportes</option>
+            <option value="idiomas">Idiomas</option>
+            <option value="tecnologia">Tecnología</option>
+            <option value="arte">Arte</option>
+            <option value="cocina">Cocina</option>
+            <option value="ciencia">Ciencia</option>
+            <option value="refuerzo">Refuerzo Escolar</option>
+            <option value="baile">Baile y Danza</option>
+            <option value="ajedrez">Ajedrez</option>
+            <option value="otro">Otro (Sugerir nueva...)</option>
+          </select>
+          <input type="number" id="srv-price" placeholder="Precio (€)" required style="padding: 10px; border-radius: 8px; border: 1px solid var(--border);">
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-bottom: 10px;">
+          <input type="email" id="srv-email" placeholder="Email de contacto" required style="padding: 10px; border-radius: 8px; border: 1px solid var(--border);">
+          <input type="tel" id="srv-phone" placeholder="Teléfono" required style="padding: 10px; border-radius: 8px; border: 1px solid var(--border);">
+        </div>
+
+        <div id="suggestion-container" style="display:none; margin-bottom: 15px; padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px; border-left: 4px solid var(--primary);">
+          <p style="font-size: 0.85rem; margin-bottom: 8px;">¿No encuentras tu categoría? Cuéntanos cuál buscas:</p>
+          <input type="text" id="srv-suggestion" placeholder="Ej. Yoga, Fotografía..." style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid var(--border);">
+        </div>
+        <input type="text" id="srv-location" placeholder="Ubicación" required style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid var(--border);">
+        <div style="margin-bottom: 15px;">
+          <label for="srv-img" style="display: block; font-size: 0.85rem; color: var(--text-light); margin-bottom: 5px;">Imagen de la actividad</label>
+          <input type="file" id="srv-img" accept="image/*" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--background); color: var(--text);">
+        </div>
+        <button type="submit" class="btn-primary" style="width: 100%;">Publicar Ahora</button>
+      </form>
+    </div>
+  </div>
+
+  <footer id="contacto">
+    <div class="footer-bottom">
+      © 2026 Web-Extraescolar. Todos los derechos reservados.
+    </div>
+  </footer>
+
+
+  <!-- AUTH MODAL -->
+  <div class="modal" id="auth-modal">
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close"><i data-lucide="x"></i></button>
+      <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem; text-align: center;">Bienvenido</h2>
+      <p style="color: var(--text-light); text-align: center; margin-bottom: 2rem;">Elige tu perfil para continuar</p>
+
+      <div class="auth-tabs" style="display:flex; border-bottom: 1px solid var(--border); margin-bottom: 1.5rem;">
+        <button id="tab-login" class="auth-tab active"
+          style="flex:1; padding: 10px; background: transparent; border: none; border-bottom: 2px solid var(--primary); color: var(--primary); font-weight: 600; cursor:pointer;">Iniciar Sesión</button>
+        <button id="tab-register" class="auth-tab"
+          style="flex:1; padding: 10px; background: transparent; border: none; border-bottom: 2px solid transparent; color: var(--text-light); font-weight: 600; cursor:pointer;">Registrarse</button>
+      </div>
+
+      <form id="auth-form">
+        <input type="hidden" id="auth-mode" value="login">
+        <div id="register-fields" style="display:none;">
+          <input type="text" placeholder="Nombre completo" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid var(--border);">
+        </div>
+        <input type="email" placeholder="Email" required style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid var(--border);">
+        <input type="password" placeholder="Contraseña" required style="width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 8px; border: 1px solid var(--border);">
+        <button type="submit" id="auth-submit-btn" class="btn-primary" style="width: 100%;">Entrar</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ACCOUNT MODAL (PROFILE & MANAGEMENT) -->
+  <div class="modal" id="account-modal">
+    <div class="modal-content" style="max-width: 600px;">
+      <button class="modal-close" id="account-close"><i data-lucide="x"></i></button>
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; text-align: center;">Mi Cuenta</h2>
+      
+      <div id="profile-view">
+        <div style="background: rgba(99, 102, 241, 0.1); padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+          <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 5px;">Correo electrónico</p>
+          <p id="profile-email" style="font-weight: 600; font-size: 1.1rem;"></p>
+        </div>
+        
+        <h3 style="font-size: 1.1rem; margin-bottom: 15px;">Mis Servicios Publicados</h3>
+        <div id="user-services-list" style="display: flex; flex-direction: column; gap: 10px; max-height: 300px; overflow-y: auto; padding-right: 10px;">
+          <!-- Los servicios del usuario aparecerán aquí -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- ── CUSTOM NOTIFICATIONS ── -->
+    <div id="toast-container"></div>
+
+    <div id="confirm-modal">
+      <div class="confirm-card">
+        <h3 id="confirm-title" style="margin-bottom: 1rem;">¿Estás seguro?</h3>
+        <p id="confirm-msg" style="color: var(--text-light); margin-bottom: 2rem;">Esta acción no se puede deshacer.</p>
+        <div class="confirm-btns">
+          <button id="confirm-cancel" class="btn-secondary">Cancelar</button>
+          <button id="confirm-ok" class="btn-primary">Confirmar</button>
+        </div>
+      </div>
+    </div>
+
+  <script src="../js/data.js"></script>
+  <script type="module" src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Extraescolar.com | Plataforma Líder en Actividades Educativas 2026</title>
+  <meta name="description"
+    content="Encuentra actividades extraescolares de alto nivel. Optimizadas para el desarrollo infantil y juvenil. Conecta con profesionales certificados.">
+
+  <!-- SEO & Meta -->
+  <link rel="canonical" href="https://extraescolar.com/">
+  <meta name="robots" content="index, follow">
+
+  <!-- JSON-LD Structured Data (SEO 2026) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "Extraescolar.com",
+    "url": "https://extraescolar.com",
+    "logo": "https://extraescolar.com/img/logo.png",
+    "description": "Plataforma de conexión entre familias y servicios extraescolares premium.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "España",
+      "addressCountry": "ES"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "1250"
+    }
+  }
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="dark-mode">
+
+  <!-- Mobile Navigation Overlay -->
+  <div class="mobile-overlay" id="mobile-overlay"></div>
+  <nav class="mobile-nav" id="mobile-nav">
+    <ul id="mobile-menu-list">
+      <li><a href="#hero">Inicio</a></li>
+      <li><a href="#actividades">Actividades</a></li>
+      <li><a href="#proceso">Cómo Funciona</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+      <li id="user-actions-mobile">
+        <button id="auth-trigger-mobile" class="btn-primary" style="width:100%; margin-top: 1rem;">Acceder</button>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- ═══════════ HEADER ═══════════ -->
+  <header>
+    <a href="#" class="brand">
+      <i data-lucide="graduation-cap"></i> Web-<span>Extraescolar</span>
+    </a>
+
+    <nav class="nav-links">
+      <a href="#hero">Inicio</a>
+      <a href="#actividades">Actividades</a>
+      <a href="#proceso">Cómo Funciona</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+    <div class="nav-actions">
+      <div id="user-actions" class="user-actions-container">
+        <button id="auth-trigger" class="btn-primary">Iniciar Sesión</button>
+      </div>
+      <button class="menu-toggle" id="menu-toggle">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- ═══════════ HERO SECTION ═══════════ -->
+  <main>
+    <section id="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-content reveal">
+        <div class="hero-badge">Plataforma Marketplace 2026</div>
+        <h1>Encuentra o publica los mejores <em>Servicios</em></h1>
+        <p class="hero-sub">Conectamos a profesionales educativos con familias que buscan calidad. La red más grande de servicios extraescolares a tu alcance.</p>
+        
+        <div style="display:flex; gap:15px; justify-content:center; margin-bottom: 2rem;">
+          <a href="pages/actividades.html" class="btn-primary" style="padding: 15px 30px; font-size: 1.1rem;">Ver Todas las Actividades</a>
+        </div>
+        
+        <!-- Search & Filter Bar -->
+        <div id="buscar" class="search-container reveal">
+          <div class="search-bar">
+            <div class="search-input">
+              <i data-lucide="search"></i>
+              <input type="text" id="service-search" placeholder="¿Qué actividad buscas? (e.g. Robótica, Tenis...)">
+            </div>
+            <div class="filter-group">
+              <select id="filter-category">
+                <option value="all">Todas las categorías</option>
+                <option value="deportes">Deportes</option>
+                <option value="idiomas">Idiomas</option>
+                <option value="tecnologia">Tecnología</option>
+                <option value="arte">Arte y Música</option>
+                <option value="cocina">Cocina</option>
+                <option value="ciencia">Ciencia</option>
+                <option value="refuerzo">Refuerzo Escolar</option>
+                <option value="baile">Baile y Danza</option>
+                <option value="ajedrez">Ajedrez</option>
+              </select>
+              <button class="btn-primary" id="btn-search">Buscar</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Trust Badges -->
+        <div class="hero-visual">
+          <div class="hero-float-chip top reveal-delay-1">
+            <div class="avatar-stack">
+              <div style="background:#6366f1;">A</div>
+              <div style="background:#10b981;">B</div>
+              <div style="background:#f59e0b;">+</div>
+            </div>
+            <span><strong>+1.2k</strong> familias confían</span>
+          </div>
+          <div class="hero-float-chip bottom reveal-delay-2">
+            <i data-lucide="shield-check" style="color:var(--accent);"></i>
+            <span>Centros <strong>Verificados</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="trust-strip reveal-delay-3">
+        <div class="stat">
+          <div class="stat-num" id="stat-activities">0</div>
+          <div class="stat-label">Actividades</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num" id="stat-users">0</div>
+          <div class="stat-label">Usuarios</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num" id="stat-rating">0</div>
+          <div class="stat-label">Valoración</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ HOW IT WORKS ═══════════ -->
+    <section id="proceso" class="bg-surface">
+      <div class="reveal">
+        <div class="section-label">El Proceso</div>
+        <h2>Cómo <em>Funciona</em></h2>
+        <p class="section-intro">Nuestra plataforma simplifica la búsqueda y gestión de actividades extraescolares.</p>
+      </div>
+
+      <div class="process-grid">
+        <div class="process-step reveal">
+          <div class="step-icon">1</div>
+          <h3>Busca</h3>
+          <p>Encuentra actividades cerca de ti filtrando por categoría, edad y horario.</p>
+        </div>
+        <div class="process-step reveal reveal-delay-1">
+          <div class="step-icon">2</div>
+          <h3>Reserva</h3>
+          <p>Gestiona inscripciones y pagos de forma segura directamente desde la web.</p>
+        </div>
+        <div class="process-step reveal reveal-delay-2">
+          <div class="step-icon">3</div>
+          <h3>Aprende</h3>
+          <p>Sigue el progreso y recibe feedback de los mejores profesionales.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ ACTIVITIES ═══════════ -->
+    <section id="actividades">
+      <div class="reveal">
+        <div class="section-label">Categorías</div>
+        <h2>Explora nuestras <em>Actividades</em></h2>
+        <p class="section-intro">Selecciona una categoría para ver todos los servicios disponibles en nuestra plataforma dedicada.</p>
+      </div>
+
+      <!-- Quick Categories Section (Links to separate page) -->
+      <div class="cat-quick-grid reveal">
+        <a href="pages/actividades.html?cat=deportes" class="cat-chip"><i data-lucide="trophy"></i><span>Deportes</span></a>
+        <a href="pages/actividades.html?cat=idiomas" class="cat-chip"><i data-lucide="languages"></i><span>Idiomas</span></a>
+        <a href="pages/actividades.html?cat=tecnologia" class="cat-chip"><i data-lucide="cpu"></i><span>Tecnología</span></a>
+        <a href="pages/actividades.html?cat=arte" class="cat-chip"><i data-lucide="palette"></i><span>Arte</span></a>
+        <a href="pages/actividades.html?cat=cocina" class="cat-chip"><i data-lucide="utensils"></i><span>Cocina</span></a>
+        <a href="pages/actividades.html?cat=ciencia" class="cat-chip"><i data-lucide="flask-conical"></i><span>Ciencia</span></a>
+        <a href="pages/actividades.html?cat=refuerzo" class="cat-chip"><i data-lucide="book-open"></i><span>Refuerzo</span></a>
+        <a href="pages/actividades.html?cat=baile" class="cat-chip"><i data-lucide="music"></i><span>Baile</span></a>
+        <a href="pages/actividades.html?cat=ajedrez" class="cat-chip"><i data-lucide="grid"></i><span>Ajedrez</span></a>
+      </div>
+
+      <div style="text-align: center; margin-top: 2rem;">
+        <a href="pages/actividades.html" class="btn-primary">Ver todas las actividades <i data-lucide="arrow-right"></i></a>
+      </div>
+    </section>
+
+    <!-- ═══════════ FAQ ═══════════ -->
+    <section id="faq">
+      <div class="reveal">
+        <div class="section-label">Ayuda</div>
+        <h2>Preguntas <em>Frecuentes</em></h2>
+      </div>
+
+      <div class="faq-grid reveal">
+        <details class="faq-item" open>
+          <summary>¿Cómo me inscribo en una actividad?</summary>
+          <p>Solo tienes que seleccionar la actividad, elegir el horario y completar el formulario de inscripción. Recibirás un email de confirmación al instante.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Los centros están verificados?</summary>
+          <p>Sí, todos los centros pasan un proceso de auditoría y deben cumplir con nuestros estándares de calidad y seguridad.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Puedo cancelar mi suscripción?</summary>
+          <p>Por supuesto, no hay compromiso de permanencia. Puedes cancelar en cualquier momento desde tu panel de control.</p>
+        </details>
+      </div>
+    </section>
+
+
+
+    <!-- ═══════════ SECCIÓN DE COMENTARIOS ═══════════ -->
+    <section id="comunidad" style="border-top: 1px solid var(--border);">
+      <div class="reveal">
+        <div class="section-label">Comunidad</div>
+        <h2>Comentarios de <em>Usuarios</em></h2>
+        <p class="section-intro">Comparte tu experiencia con la comunidad.</p>
+      </div>
+
+      <div style="max-width: 800px; margin: 0 auto; padding: 0 20px;">
+        <!-- Formulario -->
+        <div id="comment-form-container" style="margin-bottom: 3rem;">
+          <!-- Se cargará dinámicamente -->
+        </div>
+
+        <!-- Lista -->
+        <div id="comments-list">
+          <!-- Los comentarios reales aparecerán aquí -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ FOOTER ═══════════ -->
+    <footer id="contacto">
+      <div class="footer-grid">
+        <div>
+          <a href="#" class="brand" style="margin-bottom: 1rem;">
+            <i data-lucide="graduation-cap"></i> Web-<span>Extraescolar</span>
+          </a>
+          <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 1.5rem;">La plataforma integral que
+            transforma la gestión de actividades extraescolares para centros educativos y familias.</p>
+          <div style="display:flex; gap:10px;">
+            <a href="#" style="color:var(--text-light);"><i data-lucide="instagram"></i></a>
+            <a href="#" style="color:var(--text-light);"><i data-lucide="linkedin"></i></a>
+            <a href="#" style="color:var(--text-light);"><i data-lucide="twitter"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4>Explorar</h4>
+          <ul class="footer-links">
+            <li><a href="#actividades">Servicios Populares</a></li>
+            <li><a href="#buscar">Nuevas Ofertas</a></li>
+            <li><a href="#faq">Ayuda al Usuario</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Comunidad</h4>
+          <ul class="footer-links">
+            <li><a href="#">Ser Proveedor</a></li>
+            <li><a href="#">Blog Educativo</a></li>
+            <li><a href="#">Privacidad</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 1.5rem;">Legal</h4>
+          <ul class="footer-links">
+            <li><a href="pages/legal.html">Privacidad</a></li>
+            <li><a href="pages/legal.html">Términos de uso</a></li>
+            <li><a href="pages/legal.html">Cookies</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        © 2026 Web-Extraescolar. Todos los derechos reservados.
+      </div>
+    </footer>
+
+    <!-- ═══════════ FLOATING ELEMENTS ═══════════ -->
+      </div>
+    </div>
+
+    <!-- Cookie Banner -->
+    <div class="cookie-banner" id="cookie-banner">
+      <div>
+        <strong>🍪 Usamos cookies</strong> para mejorar su experiencia y analizar el tráfico. <a href="pages/legal.html"
+          style="color:var(--primary);">Política de Cookies</a>.
+      </div>
+      <div style="display:flex; gap:10px;">
+        <button class="btn-primary" id="accept-cookies"
+          style="padding: 5px 15px; min-height:30px; font-size:0.85rem;">Aceptar</button>
+        <button class="btn-secondary" style="padding: 5px 15px; min-height:30px; font-size:0.85rem;">Configurar</button>
+      </div>
+    </div>
+
+    <!-- DETAILS MODAL -->
+  <div id="details-modal" class="modal">
+    <div class="modal-content" style="max-width: 800px;">
+      <button id="details-close" class="modal-close"><i data-lucide="x"></i></button>
+      <div id="details-content" class="details-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+        <!-- Content will be injected here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING ACTION BUTTON -->
+  <button id="add-service-trigger-fab" class="fab" title="Publicar Servicio">
+    <i data-lucide="plus"></i>
+  </button>
+
+  <!-- ADD SERVICE MODAL -->
+  <div class="modal" id="service-modal">
+    <div class="modal-content">
+      <button class="modal-close" id="service-close"><i data-lucide="x"></i></button>
+      <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem; text-align: center;">Publicar Nuevo Servicio</h2>
+      <p style="color: var(--text-light); text-align: center; margin-bottom: 1.5rem;">Comparte tu actividad con la comunidad</p>
+
+      <form id="service-form">
+        <input type="text" id="srv-name" placeholder="Título del servicio" required style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid var(--border);">
+        <textarea id="srv-desc" placeholder="Descripción detallada" required style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid var(--border); min-height: 80px; font-family:inherit;"></textarea>
+        
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-bottom: 10px;">
+          <select id="srv-cat" style="padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--background); color: var(--text);">
+            <option value="deportes">Deportes</option>
+            <option value="idiomas">Idiomas</option>
+            <option value="tecnologia">Tecnología</option>
+            <option value="arte">Arte</option>
+            <option value="cocina">Cocina</option>
+            <option value="ciencia">Ciencia</option>
+            <option value="refuerzo">Refuerzo Escolar</option>
+            <option value="baile">Baile y Danza</option>
+            <option value="ajedrez">Ajedrez</option>
+            <option value="otro">Otro (Sugerir nueva...)</option>
+          </select>
+          <input type="number" id="srv-price" placeholder="Precio (€/mes)" required style="padding: 10px; border-radius: 8px; border: 1px solid var(--border);">
+        </div>
+        
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-bottom: 10px;">
+          <input type="email" id="srv-email" placeholder="Email de contacto" required style="padding: 10px; border-radius: 8px; border: 1px solid var(--border);">
+          <input type="tel" id="srv-phone" placeholder="Teléfono" required style="padding: 10px; border-radius: 8px; border: 1px solid var(--border);">
+        </div>
+        
+        <div id="suggestion-container" style="display:none; margin-bottom: 15px; padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px; border-left: 4px solid var(--primary);">
+          <p style="font-size: 0.85rem; margin-bottom: 8px;">¿No encuentras tu categoría? Cuéntanos cuál buscas:</p>
+          <input type="text" id="srv-suggestion" placeholder="Ej. Yoga, Fotografía..." style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid var(--border);">
+        </div>
+        
+        <input type="text" id="srv-location" placeholder="Ubicación (Ciudad o Barrio)" required style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid var(--border);">
+        <div style="margin-bottom: 15px;">
+          <label for="srv-img" style="display: block; font-size: 0.85rem; color: var(--text-light); margin-bottom: 5px;">Imagen de la actividad</label>
+          <input type="file" id="srv-img" accept="image/*" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--background); color: var(--text);">
+        </div>
+        
+        <button type="submit" class="btn-primary" style="width: 100%;">Publicar Ahora</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- AUTH MODAL -->
+    <div class="modal" id="auth-modal">
+      <div class="modal-content">
+        <button class="modal-close" id="modal-close"><i data-lucide="x"></i></button>
+        <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem; text-align: center;">Bienvenido</h2>
+        <p style="color: var(--text-light); text-align: center; margin-bottom: 2rem;">Elige tu perfil para continuar</p>
+
+        <div class="auth-tabs" style="display:flex; border-bottom: 1px solid var(--border); margin-bottom: 1.5rem;">
+          <button id="tab-login" class="auth-tab active"
+            style="flex:1; padding: 10px; background: transparent; border: none; border-bottom: 2px solid var(--primary); color: var(--primary); font-weight: 600; cursor:pointer;">Iniciar Sesión</button>
+          <button id="tab-register" class="auth-tab"
+            style="flex:1; padding: 10px; background: transparent; border: none; border-bottom: 2px solid transparent; color: var(--text-light); font-weight: 600; cursor:pointer;">Registrarse</button>
+        </div>
+
+        <form id="auth-form">
+          <input type="hidden" id="auth-mode" value="login">
+          <div id="register-fields" style="display:none;">
+            <input type="text" placeholder="Nombre completo" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid var(--border);">
+          </div>
+          <input type="email" placeholder="Email" required style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid var(--border);">
+          <input type="password" placeholder="Contraseña" required style="width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 8px; border: 1px solid var(--border);">
+          <button type="submit" id="auth-submit-btn" class="btn-primary" style="width: 100%;">Entrar</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- ACCOUNT MODAL (PROFILE & MANAGEMENT) -->
+    <div class="modal" id="account-modal">
+      <div class="modal-content" style="max-width: 600px;">
+        <button class="modal-close" id="account-close"><i data-lucide="x"></i></button>
+        <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; text-align: center;">Mi Cuenta</h2>
+        
+        <div id="profile-view">
+          <div style="background: rgba(99, 102, 241, 0.1); padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+            <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 5px;">Correo electrónico</p>
+            <p id="profile-email" style="font-weight: 600; font-size: 1.1rem;"></p>
+          </div>
+          
+          <h3 style="font-size: 1.1rem; margin-bottom: 15px;">Mis Servicios Publicados</h3>
+          <div id="user-services-list" style="display: flex; flex-direction: column; gap: 10px; max-height: 300px; overflow-y: auto; padding-right: 10px;">
+            <!-- Los servicios del usuario aparecerán aquí -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JS -->
+    <script src="js/data.js"></script>
+    <script type="module" src="js/main.js"></script>
+    <!-- ── CUSTOM NOTIFICATIONS ── -->
+    <div id="toast-container"></div>
+
+    <div id="confirm-modal">
+      <div class="confirm-card">
+        <h3 id="confirm-title" style="margin-bottom: 1rem;">¿Estás seguro?</h3>
+        <p id="confirm-msg" style="color: var(--text-light); margin-bottom: 2rem;">Esta acción no se puede deshacer.</p>
+        <div class="confirm-btns">
+          <button id="confirm-cancel" class="btn-secondary">Cancelar</button>
+          <button id="confirm-ok" class="btn-primary">Confirmar</button>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+
+</html>

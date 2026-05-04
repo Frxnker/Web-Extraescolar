@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Perfil | Web-Extraescolar</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    .profile-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 100px auto 50px;
+      padding: 0 20px;
+    }
+
+    .profile-sidebar {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 1.5rem;
+      height: fit-content;
+      position: sticky;
+      top: 100px;
+    }
+
+    .profile-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .profile-nav-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 15px;
+      border: none;
+      background: none;
+      color: var(--text-light);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      text-align: left;
+    }
+
+    .profile-nav-btn.active {
+      background: rgba(99, 102, 241, 0.1);
+      color: var(--primary);
+    }
+
+    .profile-nav-btn:hover:not(.active) {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+    }
+
+    .profile-content-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 2rem;
+      min-height: 500px;
+    }
+
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .profile-avatar-large {
+      width: 80px;
+      height: 80px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    .content-section {
+      display: none;
+    }
+
+    .content-section.active {
+      display: block;
+    }
+
+    .grid-managed {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .profile-layout {
+        grid-template-columns: 1fr;
+      }
+      .profile-sidebar {
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body class="dark-mode">
+  <!-- Mobile Navigation Overlay -->
+  <div class="mobile-overlay" id="mobile-overlay"></div>
+  <nav class="mobile-nav" id="mobile-nav">
+    <ul id="mobile-menu-list">
+      <li><a href="../index.html">Inicio</a></li>
+      <li><a href="actividades.html">Actividades</a></li>
+      <li><a href="../index.html#proceso">Cómo Funciona</a></li>
+      <li id="user-actions-mobile">
+        <button id="auth-trigger-mobile" class="btn-primary" style="width:100%; margin-top: 1rem;">Acceder</button>
+      </li>
+    </ul>
+  </nav>
+
+  <header>
+    <button class="menu-toggle" id="menu-toggle"><i data-lucide="menu"></i></button>
+    <a href="../index.html" class="brand">
+      <i data-lucide="graduation-cap"></i> Web-<span>Extraescolar</span>
+    </a>
+    <div class="nav-actions">
+      <div id="user-actions" class="user-actions-container">
+        <!-- Se cargará dinámicamente -->
+      </div>
+    </div>
+  </header>
+
+  <div class="profile-layout">
+    <aside class="profile-sidebar">
+      <div class="profile-header">
+        <div class="profile-avatar-large" id="avatar-initial">-</div>
+        <div>
+          <h2 id="display-name" style="font-size: 1.2rem;">Usuario</h2>
+          <p id="display-email" style="font-size: 0.85rem; color: var(--text-light);">email@ejemplo.com</p>
+        </div>
+      </div>
+      <nav class="profile-nav">
+        <button class="profile-nav-btn active" data-section="info">
+          <i data-lucide="user"></i> Mi Perfil
+        </button>
+        <button class="profile-nav-btn" data-section="services">
+          <i data-lucide="layout-grid"></i> Mis Anuncios
+        </button>
+        <button class="profile-nav-btn" data-section="favorites">
+          <i data-lucide="heart"></i> Mis Favoritos
+        </button>
+        <button class="profile-nav-btn" data-section="settings">
+          <i data-lucide="settings"></i> Ajustes
+        </button>
+      </nav>
+    </aside>
+
+    <main class="profile-content-card">
+      <!-- SECCIÓN: MI PERFIL -->
+      <section id="section-info" class="content-section active">
+        <h3 style="margin-bottom: 1.5rem;">Editar Perfil</h3>
+        <form id="profile-edit-form" style="max-width: 400px;">
+          <div style="margin-bottom: 15px;">
+            <label style="display:block; margin-bottom: 8px; font-size: 0.9rem;">Nombre Público</label>
+            <input type="text" id="edit-name" placeholder="Tu nombre o empresa" style="width:100%; padding: 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--background); color: var(--text);">
+          </div>
+          <div style="margin-bottom: 15px;">
+            <label style="display:block; margin-bottom: 8px; font-size: 0.9rem;">Biografía / Descripción</label>
+            <textarea id="edit-bio" placeholder="Cuéntanos un poco sobre ti..." style="width:100%; padding: 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--background); color: var(--text); min-height: 100px;"></textarea>
+          </div>
+          <button type="submit" class="btn-primary" style="width: 100%;">Guardar Cambios</button>
+        </form>
+      </section>
+
+      <!-- SECCIÓN: MIS ANUNCIOS -->
+      <section id="section-services" class="content-section">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 1.5rem;">
+          <h3>Mis Servicios Publicados</h3>
+          <button id="add-new-btn" class="btn-primary" style="padding: 8px 15px; font-size: 0.85rem;">+ Nuevo</button>
+        </div>
+        <div id="my-services-grid" class="grid-managed">
+          <!-- Se cargará con JS -->
+        </div>
+      </section>
+
+      <!-- SECCIÓN: FAVORITOS -->
+      <section id="section-favorites" class="content-section">
+        <h3 style="margin-bottom: 1.5rem;">Mis Favoritos</h3>
+        <div id="favorites-grid" class="grid-managed">
+          <!-- Se cargará con JS -->
+        </div>
+      </section>
+
+      <section id="section-settings" class="content-section">
+        <h3 style="margin-bottom: 1.5rem;">Ajustes de Cuenta</h3>
+        
+        <div style="padding: 20px; border: 1px solid var(--border); border-radius: 16px; margin-bottom: 20px;">
+          <h4 style="margin-bottom: 10px; font-size: 1rem;">Apariencia</h4>
+          <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 15px;">Elige cómo quieres ver la plataforma.</p>
+          <select id="theme-selector" style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--background); color: var(--text);">
+            <option value="auto">Automático (Sistema)</option>
+            <option value="light">Modo Claro</option>
+            <option value="dark">Modo Oscuro</option>
+          </select>
+        </div>
+
+        <div style="padding: 20px; border: 1px solid var(--border); border-radius: 16px; margin-bottom: 20px;">
+          <h4 style="margin-bottom: 10px; font-size: 1rem;">Privacidad</h4>
+          <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 15px;">Gestiona quién puede ver tu perfil público.</p>
+          <button class="btn-secondary" style="font-size: 0.8rem;">Configurar Privacidad</button>
+        </div>
+        <button class="dropdown-item logout" id="btn-logout-full" style="padding: 15px; background: rgba(239, 68, 68, 0.1); border-radius: 12px; text-align: center; justify-content: center; width: 100%;">
+          Cerrar Sesión Permanentemente
+        </button>
+      </section>
+    </main>
+  </div>
+
+  <!-- Incluimos los modales de Auth y Publicación (mismo código que Index para consistencia) -->
+  <div class="modal" id="service-modal">
+    <div class="modal-content">
+      <button class="modal-close" id="service-close"><i data-lucide="x"></i></button>
+      <h2 style="font-size: 1.5rem; text-align: center;">Publicar Nuevo Servicio</h2>
+      <form id="service-form">
+        <!-- Copiar estructura de Index.html -->
+        <input type="text" id="srv-name" placeholder="Título" required style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid var(--border);">
+        <textarea id="srv-desc" placeholder="Descripción" required style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid var(--border); min-height: 80px;"></textarea>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-bottom: 10px;">
+          <select id="srv-cat" style="padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--background); color: var(--text);">
+            <option value="deportes">Deportes</option>
+            <option value="idiomas">Idiomas</option>
+            <option value="tecnologia">Tecnología</option>
+            <option value="arte">Arte</option>
+            <option value="cocina">Cocina</option>
+            <option value="ciencia">Ciencia</option>
+            <option value="refuerzo">Refuerzo Escolar</option>
+            <option value="baile">Baile y Danza</option>
+            <option value="ajedrez">Ajedrez</option>
+            <option value="otro">Otro</option>
+          </select>
+          <input type="number" id="srv-price" placeholder="Precio (€)" required style="padding: 10px; border-radius: 8px; border: 1px solid var(--border);">
+        </div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-bottom: 10px;">
+          <input type="email" id="srv-email" placeholder="Email" required style="padding: 10px; border-radius: 8px; border: 1px solid var(--border);">
+          <input type="tel" id="srv-phone" placeholder="Teléfono" required style="padding: 10px; border-radius: 8px; border: 1px solid var(--border);">
+        </div>
+        <input type="text" id="srv-location" placeholder="Ubicación" required style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid var(--border);">
+        <input type="file" id="srv-img" accept="image/*" style="width: 100%; padding: 10px; margin-bottom: 15px;">
+        <button type="submit" class="btn-primary" style="width: 100%;">Publicar Ahora</button>
+      </form>
+    </div>
+  </div>
+
+    <!-- ── CUSTOM NOTIFICATIONS ── -->
+    <div id="toast-container"></div>
+
+    <div id="confirm-modal">
+      <div class="confirm-card">
+        <h3 id="confirm-title" style="margin-bottom: 1rem;">¿Estás seguro?</h3>
+        <p id="confirm-msg" style="color: var(--text-light); margin-bottom: 2rem;">Esta acción no se puede deshacer.</p>
+        <div class="confirm-btns">
+          <button id="confirm-cancel" class="btn-secondary">Cancelar</button>
+          <button id="confirm-ok" class="btn-primary">Confirmar</button>
+        </div>
+      </div>
+    </div>
+
+  <script src="../js/data.js"></script>
+  <script type="module" src="../js/main.js"></script>
+  <script>
+    // Lógica local para las pestañas del perfil
+    document.querySelectorAll('.profile-nav-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.section;
+        document.querySelectorAll('.profile-nav-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+        
+        btn.classList.add('active');
+        document.getElementById('section-' + target).classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
