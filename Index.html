@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Talento Kids | Actividades Extraescolares en Madrid — Robótica, Inglés, Deporte y Arte</title>
+  <meta name="description" content="Centro de actividades extraescolares en Madrid. Robótica, Inglés, Fútbol y Arte para niños de 3 a 16 años. Grupos reducidos, profesores titulados y primera clase gratis." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" />
+  <link rel="stylesheet" href="css/main.css" />
+  <meta name="theme-color" content="#1E2A78" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a href="index.html" class="logo" aria-label="Talento Kids — Inicio">
+        <div class="logo-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3z"/></svg>
+        </div>
+        <div class="logo-text">Talento<span>Kids</span></div>
+      </a>
+      <nav class="nav-desktop" aria-label="Navegación principal">
+        <div class="nav-item">
+          <a href="#actividades" class="nav-link">Actividades ▾</a>
+          <div class="nav-dropdown" role="menu">
+            <a href="actividades/robotica.html">🤖 Robótica & STEM</a>
+            <a href="#actividades">🇬🇧 Inglés</a>
+            <a href="#actividades">⚽ Fútbol</a>
+            <a href="#actividades">🎨 Arte & Creatividad</a>
+            <a href="#actividades" style="color:var(--color-primary)">Ver todas →</a>
+          </div>
+        </div>
+        <a href="horarios-tarifas.html" class="nav-link">Horarios y Tarifas</a>
+        <a href="equipo.html" class="nav-link">Nuestro Centro</a>
+        <a href="faq.html" class="nav-link">FAQ</a>
+        <a href="contacto.html" class="nav-link">Contacto</a>
+      </nav>
+      <div class="flex-gap">
+        <a href="contacto.html" class="btn btn-secondary btn-sm">Clase de prueba</a>
+        <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <nav class="nav-mobile" id="mobile-nav" aria-label="Menú móvil">
+      <a href="#actividades">Actividades</a>
+      <a href="horarios-tarifas.html">Horarios y Tarifas</a>
+      <a href="equipo.html">Nuestro Centro</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="contacto.html" class="btn btn-secondary">Primera clase gratis</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-content">
+        <div>
+          <p class="hero-eyebrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Centro extraescolar en Madrid
+          </p>
+          <h1 id="hero-title">
+            Despierta el <span class="highlight">talento</span> de tus hijos
+            <br />después del colegio
+          </h1>
+          <p class="hero-subtitle">
+            Robótica, Inglés, Fútbol y Arte en grupos reducidos, con profesores
+            titulados y en un entorno 100% seguro.
+          </p>
+          <div class="hero-actions">
+            <a href="contacto.html" class="btn btn-secondary btn-lg">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg>
+              Primera clase GRATIS
+            </a>
+            <a href="#actividades" class="btn btn-outline btn-lg">
+              Ver actividades →
+            </a>
+          </div>
+          <div class="hero-stats">
+            <div>
+              <div class="hero-stat-number">320+</div>
+              <div class="hero-stat-label">Alumnos activos</div>
+            </div>
+            <div>
+              <div class="hero-stat-number">12</div>
+              <div class="hero-stat-label">Actividades</div>
+            </div>
+            <div>
+              <div class="hero-stat-number">8 años</div>
+              <div class="hero-stat-label">De experiencia</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-card">
+            <div class="hero-card-grid">
+              <div class="hero-card-tile alt">🤖</div>
+              <div class="hero-card-tile">🇬🇧</div>
+              <div class="hero-card-tile">🎵</div>
+              <div class="hero-card-tile alt">🎨</div>
+            </div>
+            <div class="hero-card-badge">
+              <div class="hero-card-badge-icon">❤</div>
+              <div class="hero-card-badge-text">
+                <strong>Aprenden jugando</strong>
+                <span>3 a 16 años · Lun a Sáb</span>
+              </div>
+            </div>
+          </div>
+          <div class="hero-float-chip top">
+            <div class="avatar-stack">
+              <div style="background:#1E2A78">LC</div>
+              <div style="background:#FF6B1A">MR</div>
+              <div style="background:#10B981">AN</div>
+            </div>
+            <div>
+              <div class="stars">★★★★★ <strong style="color:var(--color-dark)">4.9</strong></div>
+              <div style="font-size:.7rem;color:var(--color-text-soft)">127 reseñas</div>
+            </div>
+          </div>
+          <div class="hero-float-chip bottom">
+            <div class="hero-card-badge-icon">✓</div>
+            <div>
+              <div style="font-weight:700;color:var(--color-dark);font-size:.85rem">Plazas libres</div>
+              <div style="font-size:.7rem;color:var(--color-text-soft)">Curso 2025/26</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRUST STRIP -->
+    <div class="trust-strip">
+      <div class="container trust-strip-inner">
+        <div class="trust-item">
+          <span class="trust-item-icon">🎓</span> Profesores titulados
+        </div>
+        <div class="trust-item">
+          <span class="trust-item-icon">👥</span> Grupos máx. 10 alumnos
+        </div>
+        <div class="trust-item">
+          <span class="trust-item-icon">🛡️</span> Instalaciones homologadas
+        </div>
+        <div class="trust-item">
+          <span class="trust-item-icon">⭐</span> 4.9 ★ en Google · 127 reseñas
+        </div>
+      </div>
+    </div>
+
+    <!-- ACTIVIDADES -->
+    <section class="section bg-surface" id="actividades">
+      <div class="container">
+        <div class="section-header text-center">
+          <p class="section-label">Lo que ofrecemos</p>
+          <h2 class="section-title">Una actividad para cada personalidad</h2>
+          <p class="section-subtitle">Diseñadas para cada edad y cada inquietud. Desde los más curiosos hasta los más activos.</p>
+        </div>
+
+        <div class="activities-grid">
+          <a href="actividades/robotica.html" class="activity-card">
+            <div class="activity-card-head">
+              <div class="activity-card-icon ico-1">🤖</div>
+              <span class="activity-card-age">6 – 16 años</span>
+            </div>
+            <h3>Robótica & STEM</h3>
+            <p>Programación, Arduino y construcción de robots.</p>
+            <div class="activity-card-link">Saber más <span>→</span></div>
+          </a>
+
+          <a href="#" class="activity-card">
+            <div class="activity-card-head">
+              <div class="activity-card-icon ico-2">🇬🇧</div>
+              <span class="activity-card-age">3 – 16 años</span>
+            </div>
+            <h3>Inglés Conversacional</h3>
+            <p>Metodología comunicativa. Trinity & Cambridge.</p>
+            <div class="activity-card-link">Saber más <span>→</span></div>
+          </a>
+
+          <a href="#" class="activity-card">
+            <div class="activity-card-head">
+              <div class="activity-card-icon ico-3">⚽</div>
+              <span class="activity-card-age">4 – 16 años</span>
+            </div>
+            <h3>Escuela de Fútbol</h3>
+            <p>Técnica, táctica y valores. Entrenadores UEFA.</p>
+            <div class="activity-card-link">Saber más <span>→</span></div>
+          </a>
+
+          <a href="#" class="activity-card">
+            <div class="activity-card-head">
+              <div class="activity-card-icon ico-4">🎨</div>
+              <span class="activity-card-age">4 – 14 años</span>
+            </div>
+            <h3>Arte & Creatividad</h3>
+            <p>Pintura, escultura, manga y manualidades.</p>
+            <div class="activity-card-link">Saber más <span>→</span></div>
+          </a>
+
+          <a href="#" class="activity-card">
+            <div class="activity-card-head">
+              <div class="activity-card-icon ico-5">🎵</div>
+              <span class="activity-card-age">5 – 16 años</span>
+            </div>
+            <h3>Música & Instrumentos</h3>
+            <p>Guitarra, piano, batería. Profes del Conservatorio.</p>
+            <div class="activity-card-link">Saber más <span>→</span></div>
+          </a>
+
+          <a href="#" class="activity-card">
+            <div class="activity-card-head">
+              <div class="activity-card-icon ico-6">💃</div>
+              <span class="activity-card-age">3 – 16 años</span>
+            </div>
+            <h3>Danza & Movimiento</h3>
+            <p>Ballet, danza moderna y hip-hop. Show fin de curso.</p>
+            <div class="activity-card-link">Saber más <span>→</span></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY US -->
+    <section class="section">
+      <div class="container">
+        <div class="why-grid">
+          <div>
+            <p class="section-label">Por qué elegirnos</p>
+            <h2 class="section-title">Tranquilidad para ti, diversión para ellos.</h2>
+            <p class="section-subtitle" style="margin-left:0;text-align:left;max-width:none;">
+              Llevamos 8 años cuidando lo más importante de 320 familias. Estos son los detalles que marcan la diferencia.
+            </p>
+            <a href="contacto.html" class="btn btn-primary" style="margin-top:1.75rem;">Reserva tu visita →</a>
+          </div>
+          <div class="why-list">
+            <div class="why-item"><div class="why-icon">🎓</div><h4>Profesores titulados</h4><p>Titulación específica y certificados de idoneidad para trabajar con menores.</p></div>
+            <div class="why-item"><div class="why-icon">👥</div><h4>Grupos reducidos</h4><p>Máximo 10 alumnos por aula. Atención real e individualizada.</p></div>
+            <div class="why-item"><div class="why-icon">🚌</div><h4>Recogida en colegios</h4><p>Servicio de recogida en los colegios del barrio. Lun–Vie desde 15:00.</p></div>
+            <div class="why-item"><div class="why-icon">📲</div><h4>App para padres</h4><p>Asistencia, progreso y notificaciones en tiempo real.</p></div>
+            <div class="why-item"><div class="why-icon">🍎</div><h4>Merienda saludable</h4><p>Menú equilibrado por nutricionista. Incluida en todas las tarifas.</p></div>
+            <div class="why-item"><div class="why-icon">🛡️</div><h4>Seguros + CCTV</h4><p>Seguro escolar, cámaras y protocolos de emergencia siempre actualizados.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="section bg-surface">
+      <div class="container">
+        <div class="section-header text-center">
+          <p class="section-label">Opiniones reales</p>
+          <h2 class="section-title">127 familias ya confían en nosotros</h2>
+          <p class="section-subtitle">Reseñas verificadas de Google. Sin filtros.</p>
+        </div>
+        <div class="testimonial-grid">
+          <article class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p class="testimonial-text">"Mi hija lleva dos años en robótica y ha cambiado completamente. Los profes son increíbles y muy cercanos con los padres."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">LC</div>
+              <div><div class="author-name">Laura C.</div><div class="author-role">Mamá de Sofía, 9 años · Robótica</div></div>
+            </div>
+          </article>
+          <article class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p class="testimonial-text">"El servicio de recogida en el colegio es un salvavidas. Nuestro hijo vuelve a casa feliz y con la merienda puesta."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">MR</div>
+              <div><div class="author-name">Marcos R.</div><div class="author-role">Papá de Álvaro, 8 años · Inglés</div></div>
+            </div>
+          </article>
+          <article class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p class="testimonial-text">"Vinimos por la clase de prueba gratuita y nos quedamos para siempre. Los grupos pequeños hacen toda la diferencia."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">AN</div>
+              <div><div class="author-name">Ana N.</div><div class="author-role">Mamá de Carlos, 11 años · Fútbol</div></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="section">
+      <div class="container">
+        <div class="cta-band">
+          <div class="cta-band-content">
+            <div class="cta-band-text" style="color:#fff;">
+              <p class="section-label cta-eyebrow">Curso 2025 / 2026</p>
+              <h2>Reserva tu primera clase <span style="color:var(--color-secondary)">gratis</span> hoy mismo.</h2>
+              <p style="color:rgba(255,255,255,.85);font-size:1.05rem;max-width:520px;">Sin compromiso. Comprueba en una sola sesión por qué 320 familias ya nos eligen.</p>
+              <div class="hero-actions" style="margin-top:1.75rem;margin-bottom:0;">
+                <a href="contacto.html" class="btn btn-secondary btn-lg">📅 Reservar clase de prueba</a>
+                <a href="tel:+34600000000" class="btn btn-ghost btn-lg" style="color:#fff;border-color:rgba(255,255,255,.3);border-style:solid;border-width:2px;">📞 +34 600 000 000</a>
+              </div>
+            </div>
+            <div class="cta-side">
+              <div style="display:flex;align-items:center;gap:.75rem;">
+                <div class="file-icon">⬇</div>
+                <div>
+                  <div style="font-weight:700;font-size:.9rem;">Catálogo 2025/26</div>
+                  <div style="font-size:.78rem;color:rgba(255,255,255,.7);">Horarios, tarifas y profes</div>
+                </div>
+              </div>
+              <p style="color:rgba(255,255,255,.85);font-size:.9rem;margin-top:.85rem;">Descárgalo en PDF y compártelo con tu pareja o el cole.</p>
+              <a href="#" class="btn btn-secondary" style="margin-top:1rem;width:100%;">Descargar catálogo</a>
+              <div style="font-size:.7rem;color:rgba(255,255,255,.6);text-align:center;margin-top:.6rem;">PDF · 2.4 MB · Sin spam</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="logo">
+            <div class="logo-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3z"/></svg>
+            </div>
+            <div class="logo-text">Talento<span>Kids</span></div>
+          </a>
+          <p>Centro de actividades extraescolares para niños de 3 a 16 años en Madrid. Aprender, crecer y disfrutar — juntos.</p>
+          <div class="footer-social">
+            <a href="#" class="social-link" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="#" class="social-link" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.14 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.49-3.91 3.78-3.91 1.1 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.44 2.91h-2.34V22c4.78-.8 8.43-4.94 8.43-9.94z"/></svg></a>
+            <a href="#" class="social-link" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.5a3 3 0 0 0-2.1-2.1C19.5 4 12 4 12 4s-7.5 0-9.4.4A3 3 0 0 0 .5 6.5C.1 8.4.1 12 .1 12s0 3.6.4 5.5A3 3 0 0 0 2.6 19.6C4.5 20 12 20 12 20s7.5 0 9.4-.4a3 3 0 0 0 2.1-2.1c.4-1.9.4-5.5.4-5.5s0-3.6-.4-5.5zM9.75 15.5v-7l6 3.5-6 3.5z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Actividades</h5>
+          <nav class="footer-links">
+            <a href="actividades/robotica.html">Robótica & STEM</a>
+            <a href="#">Inglés</a>
+            <a href="#">Fútbol</a>
+            <a href="#">Arte</a>
+            <a href="#">Música</a>
+            <a href="#">Danza</a>
+          </nav>
+        </div>
+        <div class="footer-col">
+          <h5>Centro</h5>
+          <nav class="footer-links">
+            <a href="equipo.html">Nuestro Equipo</a>
+            <a href="horarios-tarifas.html">Horarios y Tarifas</a>
+            <a href="faq.html">Preguntas Frecuentes</a>
+            <a href="contacto.html">Contacto</a>
+          </nav>
+        </div>
+        <div class="footer-col">
+          <h5>Contacto</h5>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Calle Ejemplo, 42 · Madrid 28001</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.36 12 19.79 19.79 0 0 1 1.29 3.33 2 2 0 0 1 3.27 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.37a16 16 0 0 0 6.29 6.29l.62-.62a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <a href="tel:+34600000000">+34 600 000 000</a>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a href="mailto:hola@talentokids.es">hola@talentokids.es</a>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Lun–Vie 15:00–21:00 · Sáb 09:00–14:00</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-bottom-text">© 2026 Talento Kids. Todos los derechos reservados.</p>
+        <nav class="footer-legal">
+          <a href="legal/aviso-legal.html">Aviso legal</a>
+          <a href="legal/privacidad.html">Privacidad</a>
+          <a href="legal/cookies.html">Cookies</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <div class="whatsapp-float">
+    <div class="whatsapp-bubble">¡Hola! ¿Tienes alguna duda? Escríbenos y te respondemos enseguida 😊</div>
+    <a href="https://wa.me/34600000000" class="whatsapp-btn" aria-label="WhatsApp">💬</a>
+  </div>
+
+  <div class="cookie-banner" role="dialog" aria-modal="true">
+    <div class="container cookie-inner">
+      <div class="cookie-text">
+        <strong>🍪 Usamos cookies</strong> para mejorar tu experiencia y analizar el tráfico. Lee nuestra <a href="legal/cookies.html">Política de Cookies</a>.
+      </div>
+      <div class="cookie-actions">
+        <button class="cookie-btn cookie-btn-accept">Aceptar todas</button>
+        <button class="cookie-btn cookie-btn-reject">Solo esenciales</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
