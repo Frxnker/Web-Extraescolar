@@ -71,13 +71,17 @@ onAuthStateChanged(auth, (user) => {
       
       userActions.innerHTML = `
         <button id="add-service-trigger" class="btn-primary">Publicar Servicio</button>
-        <div class="profile-container">
+        <div class="profile-container" style="display:flex; align-items:center; gap:15px;">
+          <a href="${window.location.pathname.includes('pages/') ? 'social.html' : 'pages/social.html'}" class="nav-icon-btn" title="Mensajes">
+            <i data-lucide="message-square" style="width:20px; color:var(--text);"></i>
+          </a>
           <div class="profile-circle" id="profile-trigger">
             ${photo ? `<img src="${photo}" style="width:100%; height:100%; border-radius:50%; object-fit:cover;">` : initial}
           </div>
           <div class="profile-dropdown" id="profile-dropdown">
             <div class="dropdown-header">${user.email}</div>
-            <button class="dropdown-item"><i data-lucide="user" style="width:16px;"></i> Mi Perfil</button>
+            <button class="dropdown-item" onclick="window.location.href='${window.location.pathname.includes('pages/') ? 'perfil.html' : 'pages/perfil.html'}'"><i data-lucide="user" style="width:16px;"></i> Mi Perfil</button>
+            <button class="dropdown-item" onclick="window.location.href='${window.location.pathname.includes('pages/') ? 'social.html' : 'pages/social.html'}'"><i data-lucide="message-square" style="width:16px;"></i> Mensajes</button>
             <button class="dropdown-item"><i data-lucide="settings" style="width:16px;"></i> Gestionar Servicios</button>
             <div style="border-top: 1px solid var(--border); margin: 5px 0;"></div>
             <button class="dropdown-item logout" id="btn-logout"><i data-lucide="log-out" style="width:16px;"></i> Cerrar Sesión</button>
@@ -226,17 +230,19 @@ async function updateStats() {
     const actSnap = await getDocs(collection(db, "actividades"));
     statActivities.textContent = actSnap.size;
 
-    // 2. Usuarios
+    // 2. Usuarios (Reales)
     const userSnap = await getDocs(collection(db, "usuarios"));
-    statUsers.textContent = userSnap.size + 150; // Sumamos 150 como base de confianza
+    statUsers.textContent = userSnap.size;
+    const heroFamCount = document.getElementById('hero-familias-count');
+    if (heroFamCount) heroFamCount.textContent = `+${userSnap.size}`;
 
-    // 3. Valoración
+    // 3. Valoración (Real)
     const comSnap = await getDocs(collection(db, "comentarios"));
     let total = 0, count = 0;
     comSnap.forEach(d => {
       if (d.data().rating) { total += parseInt(d.data().rating); count++; }
     });
-    statRating.textContent = count > 0 ? (total / count).toFixed(1) : "5.0";
+    statRating.textContent = count > 0 ? (total / count).toFixed(1) : "0.0";
   } catch (e) { console.error("Error stats:", e); }
 }
 
@@ -315,6 +321,8 @@ async function loadComments() {
     console.error("Error loading comments:", error);
   }
 }
+
+
 
 function initCommentForm() {
   const commentForm = document.getElementById('comment-form');
@@ -1147,3 +1155,284 @@ quickChips.forEach(chip => {
     });
   }
 });
+
+// ── SOCIAL & CHAT LOGIC ──
+let currentChatId = null;
+let activeChatListener = null;
+
+async function initSocialPage() {
+  const searchInput = document.getElementById('user-search-input');
+  const searchBtn = document.getElementById('btn-user-search');
+  if (!searchInput) return;
+
+  const triggerSearch = () => {
+    const queryStr = searchInput.value.trim().toLowerCase();
+    if (queryStr.length > 2) {
+      searchUsers(queryStr);
+    } else if (queryStr.length === 0) {
+      loadContacts();
+    }
+  };
+
+  searchInput.addEventListener('input', (e) => {
+    if (e.target.value.length === 0) loadContacts();
+  });
+
+  searchInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') triggerSearch();
+  });
+
+  if (searchBtn) searchBtn.addEventListener('click', triggerSearch);
+
+  loadFriendRequests();
+  loadContacts();
+}
+
+async function searchUsers(queryStr) {
+  const contactsList = document.getElementById('contacts-list');
+  contactsList.innerHTML = '<div style="text-align:center; padding:3rem; color:var(--primary);"><p style="font-weight:600; animation: pulse 1.5s infinite;">🔍 Buscando usuario exacto...</p></div>';
+  
+  try {
+    // Consulta por coincidencia EXACTA de email (Es la más segura y permitida por Firebase)
+    const q = query(collection(db, "usuarios"), where("email", "==", queryStr.toLowerCase().trim()));
+    const querySnapshot = await getDocs(q);
+    
+    contactsList.innerHTML = '<p style="padding:1rem; font-size:0.75rem; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:1px;">Resultado de búsqueda:</p>';
+    
+    let found = false;
+    querySnapshot.forEach((docSnap) => {
+      const data = docSnap.data();
+      
+      if (data.uid !== currentUser.uid) {
+        found = true;
+        const item = document.createElement('div');
+        item.className = 'contact-item';
+        const photo = localStorage.getItem(`photo_${data.uid}`) || data.photoURL;
+        item.innerHTML = `
+          <div class="contact-avatar">${photo ? `<img src="${photo}">` : data.email.charAt(0).toUpperCase()}</div>
+          <div class="contact-info">
+            <h4>${data.email.split('@')[0]}</h4>
+            <p>${data.email}</p>
+          </div>
+          <div class="contact-actions" style="display:flex; gap:5px;">
+            <button class="btn-primary btn-add-friend" style="padding:6px 10px; font-size:0.65rem; border-radius:8px;">Agregar</button>
+            <button class="btn-secondary btn-open-msg" style="padding:6px 10px; font-size:0.65rem; border-radius:8px; border:1px solid var(--primary); color:var(--primary); background:transparent;">Mensaje</button>
+          </div>
+        `;
+        
+        // Listener para Agregar
+        const addBtn = item.querySelector('.btn-add-friend');
+        addBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          sendFriendRequest(data.uid, data.email);
+        });
+
+        // Listener para Mensaje (Abrir Chat)
+        const msgBtn = item.querySelector('.btn-open-msg');
+        msgBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          openChat(data.uid, data.email);
+        });
+
+        item.onclick = () => openChat(data.uid, data.email);
+        contactsList.appendChild(item);
+      }
+    });
+
+    if (!found) {
+      contactsList.innerHTML = '<div style="text-align:center; padding:3rem; color:var(--text-light);"><p>No se ha encontrado ningún usuario con ese email exacto.</p><p style="font-size:0.8rem; margin-top:5px;">Prueba a escribir el correo completo.</p></div>';
+    }
+    lucide.createIcons();
+  } catch (err) { 
+    console.error("Error en búsqueda:", err); 
+    contactsList.innerHTML = `<p style="padding:2rem; text-align:center; color:#ef4444;">Error de permisos en la base de datos.<br><small>${err.message}</small></p>`;
+  }
+}
+
+async function sendFriendRequest(targetUid, targetEmail) {
+  try {
+    // Si no hay usuario, no hacemos nada
+    if (!currentUser) {
+      showToast("Debes estar identificado para agregar amigos", "info");
+      return;
+    }
+
+    // Enviamos la solicitud directamente (Evitamos consultas complejas para que no dé error de índices)
+    await addDoc(collection(db, "solicitudes"), {
+      from: currentUser.uid,
+      fromEmail: currentUser.email,
+      to: targetUid,
+      toEmail: targetEmail,
+      status: 'pending',
+      timestamp: new Date()
+    });
+
+    showToast(`Solicitud enviada a ${targetEmail.split('@')[0]}`, "success");
+  } catch (err) { 
+    console.error("Error al enviar solicitud:", err); 
+    showToast("Error al enviar la solicitud. Inténtalo de nuevo.", "error");
+  }
+};
+
+async function loadFriendRequests() {
+  const reqContainer = document.getElementById('friend-requests');
+  const reqList = document.getElementById('requests-list');
+  if (!reqList) return;
+
+  const q = query(collection(db, "solicitudes"), where("to", "==", currentUser.uid), where("status", "==", "pending"));
+  onSnapshot(q, (snap) => {
+    if (snap.empty) {
+      reqContainer.style.display = 'none';
+      return;
+    }
+    reqContainer.style.display = 'block';
+    reqList.innerHTML = '';
+    snap.forEach(docSnap => {
+      const data = docSnap.data();
+      const div = document.createElement('div');
+      div.className = 'request-item';
+      div.innerHTML = `
+        <span style="font-size:0.8rem;">${data.fromEmail.split('@')[0]}</span>
+        <div class="request-actions">
+          <button class="btn-action btn-accept" onclick="acceptRequest('${docSnap.id}', '${data.from}', '${data.fromEmail}')">Aceptar</button>
+        </div>
+      `;
+      reqList.appendChild(div);
+    });
+  });
+}
+
+window.acceptRequest = async (docId, fromUid, fromEmail) => {
+  try {
+    await updateDoc(doc(db, "solicitudes", docId), { status: 'accepted' });
+    await addDoc(collection(db, "amistades"), {
+      uids: [currentUser.uid, fromUid],
+      emails: [currentUser.email, fromEmail],
+      timestamp: new Date()
+    });
+    showToast("¡Solicitud aceptada!", "success");
+    loadContacts();
+  } catch (err) { console.error(err); }
+};
+
+async function loadContacts() {
+  const contactsList = document.getElementById('contacts-list');
+  if (!contactsList) return;
+
+  const q = query(collection(db, "amistades"), where("uids", "array-contains", currentUser.uid));
+  const snap = await getDocs(q);
+  contactsList.innerHTML = snap.empty ? '<p style="padding:2rem; text-align:center; color:var(--text-light); font-size:0.8rem;">No tienes amigos todavía. ¡Usa el buscador!</p>' : '';
+  
+  snap.forEach(docSnap => {
+    const data = docSnap.data();
+    const otherIdx = data.uids[0] === currentUser.uid ? 1 : 0;
+    const otherUid = data.uids[otherIdx];
+    const otherEmail = data.emails[otherIdx];
+
+    const item = document.createElement('div');
+    item.className = 'contact-item';
+    const photo = localStorage.getItem(`photo_${otherUid}`);
+    item.innerHTML = `
+      <div class="contact-avatar">${photo ? `<img src="${photo}">` : otherEmail.charAt(0).toUpperCase()}</div>
+      <div class="contact-info">
+        <h4>${otherEmail.split('@')[0]}</h4>
+        <p>Amigo</p>
+      </div>
+    `;
+    item.onclick = () => openChat(otherUid, otherEmail);
+    contactsList.appendChild(item);
+  });
+}
+
+async function openChat(targetUid, targetEmail) {
+  const chatWindow = document.getElementById('chat-window');
+  const chatId = [currentUser.uid, targetUid].sort().join('_');
+  currentChatId = chatId;
+  const photo = localStorage.getItem(`photo_${targetUid}`);
+  
+  // Activar ventana en móvil
+  chatWindow.classList.add('active');
+  
+  chatWindow.innerHTML = `
+    <div class="chat-header">
+      <button class="back-btn" id="chat-back-btn">
+        <i data-lucide="arrow-left"></i>
+      </button>
+      <div class="contact-avatar" style="width:40px; height:40px;">
+        ${photo ? `<img src="${photo}">` : targetEmail.charAt(0).toUpperCase()}
+      </div>
+      <div style="flex:1;">
+        <h4 style="margin:0; font-size:1rem;">${targetEmail.split('@')[0]}</h4>
+        <span style="font-size:0.7rem; color:var(--accent);">En línea ahora</span>
+      </div>
+    </div>
+    <div class="messages-area" id="messages-area"></div>
+    <div class="chat-input-area">
+      <input type="text" id="chat-msg-input" placeholder="Mensaje..." autocomplete="off">
+      <button class="btn-send" id="btn-send-msg"><i data-lucide="send"></i></button>
+    </div>
+  `;
+  lucide.createIcons();
+
+  // Botón volver (Móvil)
+  const backBtn = document.getElementById('chat-back-btn');
+  if (backBtn) {
+    backBtn.onclick = () => {
+      chatWindow.classList.remove('active');
+      if (activeChatListener) activeChatListener();
+    };
+  }
+
+  const msgInput = document.getElementById('chat-msg-input');
+  const sendBtn = document.getElementById('btn-send-msg');
+
+  const sendMessage = async () => {
+    const text = msgInput.value.trim();
+    if (!text) return;
+    try {
+      await addDoc(collection(db, "mensajes"), {
+        chatId: chatId,
+        sender: currentUser.uid,
+        text: text,
+        timestamp: new Date()
+      });
+      msgInput.value = '';
+    } catch (err) { console.error(err); }
+  };
+
+  sendBtn.onclick = sendMessage;
+  msgInput.onkeypress = (e) => { if (e.key === 'Enter') sendMessage(); };
+  listenMessages(chatId);
+}
+
+function listenMessages(chatId) {
+  if (activeChatListener) activeChatListener();
+  const msgArea = document.getElementById('messages-area');
+  const q = query(collection(db, "mensajes"), where("chatId", "==", chatId), orderBy("timestamp", "asc"), limit(50));
+  activeChatListener = onSnapshot(q, (snap) => {
+    msgArea.innerHTML = '';
+    snap.forEach(docSnap => {
+      const data = docSnap.data();
+      const isSent = data.sender === currentUser.uid;
+      const msgDiv = document.createElement('div');
+      msgDiv.className = `msg ${isSent ? 'sent' : 'received'}`;
+      msgDiv.innerHTML = `
+        ${data.text}
+        <span class="msg-time">${data.timestamp ? new Date(data.timestamp.seconds * 1000).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : ''}</span>
+      `;
+      msgArea.appendChild(msgDiv);
+    });
+    msgArea.scrollTop = msgArea.scrollHeight;
+  });
+}
+
+if (window.location.pathname.includes('social.html')) {
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      currentUser = user;
+      initSocialPage();
+    } else {
+      window.location.href = '../index.html';
+    }
+  });
+}
