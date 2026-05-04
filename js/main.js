@@ -122,3 +122,31 @@ if (acceptCookies) {
     cookieBanner.classList.remove('active');
   });
 }
+
+
+// ── GEOLOCATION ──
+function initGeolocation() {
+  const mapIframe = document.getElementById('google-map');
+  
+  if (navigator.geolocation && mapIframe) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const lat = position.coords.latitude;
+        const lng = position.coords.longitude;
+        
+        // Update iframe with a dynamic view centered on coordinates
+        // Using the maps.google.com format which is more flexible for direct coordinates without API key
+        mapIframe.src = `https://maps.google.com/maps?q=${lat},${lng}&z=14&output=embed&t=m`;
+        
+        console.log(`Ubicación detectada: ${lat}, ${lng}`);
+      },
+      (error) => {
+        console.warn("Error al detectar la ubicación:", error.message);
+        // We keep the default Málaga view if user denies permission or there's an error
+      }
+    );
+  }
+}
+
+// Start detection
+initGeolocation();
