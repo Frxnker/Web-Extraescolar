@@ -396,9 +396,19 @@
       </div>
     </div>
 
-    <!-- Auth Modal -->
-    <div class="modal-overlay" id="auth-modal">
-      <div class="modal-card">
+    <!-- DETAILS MODAL -->
+  <div id="details-modal" class="modal">
+    <div class="modal-content" style="max-width: 800px;">
+      <button id="details-close" class="modal-close"><i data-lucide="x"></i></button>
+      <div id="details-content" class="details-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+        <!-- Content will be injected here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- AUTH MODAL -->
+    <div class="modal" id="auth-modal">
+      <div class="modal-content">
         <button class="modal-close" id="modal-close"><i data-lucide="x"></i></button>
         <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem; text-align: center;">Bienvenido</h2>
         <p style="color: var(--text-light); text-align: center; margin-bottom: 2rem;">Elige tu perfil para continuar</p>

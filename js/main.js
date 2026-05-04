@@ -81,14 +81,30 @@ if (track) {
 }
 
 
+// ── MODAL HELPERS ──
+function toggleScrollLock(lock) {
+  document.body.classList.toggle('no-scroll', lock);
+}
+
+
 // ── AUTH MODAL ──
 const authModal = document.getElementById('auth-modal');
 const btnClose = document.getElementById('modal-close');
 const authTrigger = document.getElementById('auth-trigger');
 const authTriggerMobile = document.getElementById('auth-trigger-mobile');
 
-function openModal() { if (authModal) authModal.classList.add('active'); }
-function closeModal() { if (authModal) authModal.classList.remove('active'); }
+function openModal() { 
+  if (authModal) {
+    authModal.classList.add('active');
+    toggleScrollLock(true);
+  } 
+}
+function closeModal() { 
+  if (authModal) {
+    authModal.classList.remove('active');
+    toggleScrollLock(false);
+  } 
+}
 
 if (authTrigger) authTrigger.addEventListener('click', openModal);
 if (authTriggerMobile) {
@@ -210,6 +226,7 @@ function renderServices(filterCat = 'all', query = '') {
       const card = document.createElement('div');
       card.className = `act-card reveal visible`;
       card.style.transitionDelay = `${index * 0.1}s`;
+      card.style.cursor = 'pointer';
       card.innerHTML = `
         <img src="${s.img}" alt="${s.title}" class="act-img">
         <div class="act-body">
@@ -223,11 +240,86 @@ function renderServices(filterCat = 'all', query = '') {
             </div>
           ` : ''}
         </div>`;
+      
+      card.addEventListener('click', () => openDetailsModal(s));
       activitiesContainer.appendChild(card);
     });
   }
   lucide.createIcons();
 }
+
+// ── DETAILS MODAL LOGIC ──
+const detailsModal = document.getElementById('details-modal');
+const detailsClose = document.getElementById('details-close');
+const detailsContent = document.getElementById('details-content');
+
+function openDetailsModal(service) {
+  if (!detailsModal || !detailsContent) return;
+  
+  const mapQuery = encodeURIComponent(service.location || service.title);
+  
+  detailsContent.innerHTML = `
+    <div class="details-info">
+      <img src="${service.img}" alt="${service.title}" style="width: 100%; border-radius: 12px; margin-bottom: 1.5rem; height: 250px; object-fit: cover;">
+      <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem;">${service.title}</h2>
+      <div style="display: inline-block; padding: 4px 12px; background: var(--primary); color: white; border-radius: 20px; font-size: 0.8rem; margin-bottom: 1rem;">${service.category.toUpperCase()}</div>
+      <p style="color: var(--text-light); line-height: 1.6; margin-bottom: 1.5rem;">${service.description || 'Sin descripción disponible.'}</p>
+      
+      <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 1.5rem;">
+        <div style="display:flex; align-items:center; gap:10px;"><i data-lucide="users" style="color: var(--primary)"></i> <strong>Edad:</strong> ${service.age}</div>
+        <div style="display:flex; align-items:center; gap:10px;"><i data-lucide="map-pin" style="color: var(--primary)"></i> <strong>Ubicación:</strong> ${service.location || 'Consultar'}</div>
+        ${service.email ? `<div style="display:flex; align-items:center; gap:10px;"><i data-lucide="mail" style="color: var(--primary)"></i> <strong>Email:</strong> ${service.email}</div>` : ''}
+        ${service.phone ? `<div style="display:flex; align-items:center; gap:10px;"><i data-lucide="phone" style="color: var(--primary)"></i> <strong>Teléfono:</strong> ${service.phone}</div>` : ''}
+      </div>
+    </div>
+    <div class="details-map">
+      <h3 style="margin-bottom: 1rem;">Ubicación en el mapa</h3>
+      <div style="width: 100%; height: 350px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border);">
+        <iframe 
+          width="100%" 
+          height="100%" 
+          frameborder="0" 
+          style="border:0" 
+          src="https://www.google.com/maps/embed/v1/place?key=REPLACE_WITH_YOUR_API_KEY&q=${mapQuery}" 
+          allowfullscreen>
+          <!-- Note: v1/place requires an API key. For demo, we use a simpler search URL -->
+        </iframe>
+        <iframe 
+          width="100%" 
+          height="100%" 
+          style="border:0" 
+          loading="lazy" 
+          allowfullscreen 
+          src="https://maps.google.com/maps?q=${mapQuery}&t=&z=13&ie=UTF8&iwloc=&output=embed">
+        </iframe>
+      </div>
+    </div>
+  `;
+  
+  // Note: I included two iframes above, the second one is a classic embed that doesn't need a key
+  // I will remove the first one to avoid errors
+  detailsContent.querySelector('iframe').remove();
+  
+  detailsModal.classList.add('active');
+  toggleScrollLock(true);
+  lucide.createIcons();
+}
+
+if (detailsClose) {
+  detailsClose.addEventListener('click', () => {
+    detailsModal.classList.remove('active');
+    toggleScrollLock(false);
+  });
+}
+if (detailsModal) {
+  detailsModal.addEventListener('click', (e) => {
+    if (e.target === detailsModal) {
+      detailsModal.classList.remove('active');
+      toggleScrollLock(false);
+    }
+  });
+}
+
 
 function initMarketplace() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -251,8 +343,18 @@ const serviceClose = document.getElementById('service-close');
 const addServiceTrigger = document.getElementById('add-service-trigger');
 const addServiceTriggerHero = document.getElementById('add-service-trigger-hero');
 
-function openServiceModal() { if (serviceModal) serviceModal.classList.add('active'); }
-function closeServiceModal() { if (serviceModal) serviceModal.classList.remove('active'); }
+function openServiceModal() { 
+  if (serviceModal) {
+    serviceModal.classList.add('active');
+    toggleScrollLock(true);
+  } 
+}
+function closeServiceModal() { 
+  if (serviceModal) {
+    serviceModal.classList.remove('active');
+    toggleScrollLock(false);
+  } 
+}
 
 if (addServiceTrigger) addServiceTrigger.addEventListener('click', openServiceModal);
 if (addServiceTriggerHero) addServiceTriggerHero.addEventListener('click', openServiceModal);
