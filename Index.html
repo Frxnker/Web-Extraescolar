@@ -1,53 +1,183 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Extraescolar</title>
+    <title>Web Extraescolar | Encuentra y anuncia actividades extraescolares</title>
+    <meta name="description"
+        content="La plataforma líder para encontrar actividades extraescolares, clases particulares y talleres. Conecta con centros y autónomos de confianza.">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+
 <body>
     <header>
-        <h1>Web Extraescolar</h1>
-        <nav>
-            <ul>
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#acerca">Acerca de</a></li>
-                <li><a href="#actividades">Actividades</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
+        <div class="brand">
+            <i data-lucide="graduation-cap"></i>
+            Extraescolar.com
+        </div>
+        <nav class="nav-links">
+            <a href="#inicio">Inicio</a>
+            <a href="#actividades">Actividades</a>
+            <a href="#profesionales">Para Profesionales</a>
+            <a href="#contacto">Contacto</a>
         </nav>
+        <div class="nav-actions">
+            <a href="#" class="btn-primary">Publicar Actividad</a>
+        </div>
     </header>
+
     <main>
-        <section id="inicio">
-            <h2>Bienvenido</h2>
-            <p>Descubre actividades extraescolares emocionantes para tus hijos.</p>
+        <!-- Hero Section -->
+        <section class="hero" id="inicio">
+            <div class="hero-content">
+                <h1>Descubre el talento de tus hijos fuera del aula</h1>
+                <p>Encuentra los mejores centros, academias y profesionales autónomos para actividades extraescolares en
+                    tu zona.</p>
+
+                <div class="search-box">
+                    <input type="text" placeholder="¿Qué actividad buscas? (Fútbol, Pintura, Inglés...)">
+                    <button class="btn-primary">Buscar ahora</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="img/hero.png" alt="Niños realizando actividades extraescolares">
+            </div>
         </section>
-        <section id="acerca">
-            <h2>Acerca de Nosotros</h2>
-            <p>Somos una plataforma dedicada a conectar familias con actividades educativas y recreativas fuera del horario escolar.</p>
-        </section>
+
+        <!-- Activities Section -->
         <section id="actividades">
-            <h2>Nuestras Actividades</h2>
-            <article>
-                <h3>Deportes</h3>
-                <p>Fútbol, baloncesto, natación y más.</p>
-            </article>
-            <article>
-                <h3>Arte y Música</h3>
-                <p>Pintura, música, teatro y danza.</p>
-            </article>
-            <article>
-                <h3>Educación</h3>
-                <p>Clases de idiomas, matemáticas y ciencias.</p>
-            </article>
+            <div class="section-header">
+                <h2>Explora por Categoría</h2>
+                <p>Cientos de actividades clasificadas para facilitar tu búsqueda.</p>
+            </div>
+
+            <div class="activity-grid">
+                <!-- Deportes -->
+                <article class="card">
+                    <div class="card-img"
+                        style="background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&q=80&w=400'); background-size: cover;">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-tag">Deportes</span>
+                        <h3>Fútbol y Equipo</h3>
+                        <p>Clubs deportivos y entrenadores personales para fomentar el trabajo en equipo.</p>
+                    </div>
+                </article>
+
+                <!-- Arte -->
+                <article class="card">
+                    <div class="card-img"
+                        style="background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?auto=format&fit=crop&q=80&w=400'); background-size: cover;">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-tag">Arte</span>
+                        <h3>Pintura y Creatividad</h3>
+                        <p>Talleres de artes plásticas para despertar la imaginación de los más pequeños.</p>
+                    </div>
+                </article>
+
+                <!-- Educación -->
+                <article class="card">
+                    <div class="card-img"
+                        style="background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=400'); background-size: cover;">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-tag">Idiomas</span>
+                        <h3>Inmersión Lingüística</h3>
+                        <p>Clases de inglés, francés y chino con profesores nativos y academias certificadas.</p>
+                    </div>
+                </article>
+            </div>
         </section>
+
+        <!-- Professionals CTA -->
+        <section id="profesionales">
+            <div class="cta-banner">
+                <h2>¿Eres un profesional o centro educativo?</h2>
+                <p>Únete a la mayor red de actividades extraescolares y llega a cientos de familias que buscan tus
+                    servicios.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center;">
+                    <a href="#" class="btn-primary" style="background: white; color: var(--secondary);">Registrar mi
+                        Centro</a>
+                    <a href="#" class="btn-primary" style="background: transparent; border: 2px solid white;">Soy
+                        Autónomo</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact/Newsletter -->
         <section id="contacto">
-            <h2>Contacto</h2>
-            <p>Envíanos un mensaje: <a href="mailto:info@webextraescolar.com">info@webextraescolar.com</a></p>
+            <div class="section-header">
+                <h2>Mantente Informado</h2>
+                <p>Suscríbete para recibir las últimas novedades y ofertas en actividades cerca de ti.</p>
+                <div class="search-box" style="max-width: 500px; margin: 2rem auto;">
+                    <input type="email" placeholder="Tu correo electrónico">
+                    <button class="btn-primary">Suscribirme</button>
+                </div>
+            </div>
         </section>
     </main>
+
     <footer>
-        <p>&copy; 2023 Web Extraescolar. Todos los derechos reservados.</p>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="brand">
+                    <i data-lucide="graduation-cap"></i>
+                    Extraescolar.com
+                </div>
+                <p>Conectando el talento del mañana con las oportunidades de hoy.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Plataforma</h4>
+                <ul>
+                    <li><a href="#">Cómo funciona</a></li>
+                    <li><a href="#">Buscar actividades</a></li>
+                    <li><a href="#">Para profesionales</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Soporte</h4>
+                <ul>
+                    <li><a href="#">Centro de ayuda</a></li>
+                    <li><a href="#">Contacto</a></li>
+                    <li><a href="#">Privacidad</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Social</h4>
+                <ul>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Web Extraescolar. Todos los derechos reservados. Hecho con <i data-lucide="heart"
+                    style="width: 14px; color: #ef4444; display: inline;"></i> para el futuro.</p>
+        </div>
     </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Smooth scroll for anchors
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
+
 </html>
