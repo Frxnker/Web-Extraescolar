@@ -1,5 +1,5 @@
 // ── INITIALIZE ICONS ──
-import { db, collection, addDoc, getDocs, query, orderBy, deleteDoc, doc, where, auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from './firebase-config.js';
+import { db, collection, addDoc, getDocs, query, orderBy, deleteDoc, doc, where, auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from './modules/firebase.js';
 lucide.createIcons();
 
 let currentUser = null;

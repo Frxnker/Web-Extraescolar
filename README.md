@@ -37,17 +37,21 @@ Plataforma premium diseñada para conectar a profesionales de la educación y el
 ## 📂 Estructura del Proyecto
 
 ```text
-├── Index.html          # Página principal y buscador
-├── css/
-│   └── styles.css      # Sistema de diseño y variables de tema
-├── js/
-│   ├── main.js         # Lógica central (Auth, Stats, UI)
-│   ├── firebase-config.js # Configuración y exportación de Firebase
-│   └── data.js         # Datos semilla y fallback
-├── pages/
-│   ├── actividades.html # Explorador completo de servicios
-│   └── perfil.html      # Panel de gestión de usuario
-└── img/                # Recursos visuales
+├── index.html          # Página principal y buscador
+├── assets/             # Recursos estáticos y lógica
+│   ├── css/
+│   │   └── styles.css  # Sistema de diseño y variables
+│   ├── js/
+│   │   ├── main.js     # Lógica central (Auth, Stats, UI)
+│   │   ├── data.js     # Datos semilla
+│   │   └── modules/
+│   │       └── firebase.js # Configuración de Firebase
+│   └── img/            # Recursos visuales
+├── pages/              # Vistas secundarias
+│   ├── actividades.html
+│   ├── perfil.html
+│   └── ...
+└── README.md
 ```
 
 ## 🚀 Instalación y Uso
