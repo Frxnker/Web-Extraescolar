@@ -948,11 +948,16 @@ input:focus {
     width: calc(100% - 30px) !important;
     left: 15px !important;
     right: 15px !important;
-    bottom: 15px !important;
+    bottom: -150px !important; /* Hidden state for mobile */
     flex-direction: column;
     text-align: center;
     gap: 15px;
     border-radius: 12px;
+    transition: bottom 0.4s ease;
+  }
+
+  .cookie-banner.active {
+    bottom: 15px !important; /* Visible state for mobile */
   }
 }
 
