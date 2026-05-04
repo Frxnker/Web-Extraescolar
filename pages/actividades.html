@@ -25,7 +25,21 @@
 </head>
 
 <body class="dark-mode">
+  <!-- Mobile Navigation Overlay -->
+  <div class="mobile-overlay" id="mobile-overlay"></div>
+  <nav class="mobile-nav" id="mobile-nav">
+    <ul id="mobile-menu-list">
+      <li><a href="../Index.html">Inicio</a></li>
+      <li><a href="actividades.html">Actividades</a></li>
+      <li><a href="../Index.html#proceso">Cómo Funciona</a></li>
+      <li id="user-actions-mobile">
+        <button id="auth-trigger-mobile" class="btn-primary" style="width:100%; margin-top: 1rem;">Acceder</button>
+      </li>
+    </ul>
+  </nav>
+
   <header>
+    <button class="menu-toggle" id="menu-toggle"><i data-lucide="menu"></i></button>
     <a href="../Index.html" class="brand">
       <i data-lucide="graduation-cap"></i> Web-<span>Extraescolar</span>
     </a>
@@ -35,8 +49,9 @@
       <a href="../Index.html#proceso">Cómo Funciona</a>
     </nav>
     <div class="nav-actions">
-      <button id="theme-toggle" title="Cambiar tema"><i data-lucide="moon"></i></button>
-      <button id="add-service-trigger" class="btn-primary">Publicar Servicio</button>
+      <div id="user-actions" class="user-actions-container">
+        <button id="auth-trigger" class="btn-primary">Iniciar Sesión</button>
+      </div>
     </div>
   </header>
 
@@ -147,7 +162,67 @@
   </footer>
 
 
+  <!-- AUTH MODAL -->
+  <div class="modal" id="auth-modal">
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close"><i data-lucide="x"></i></button>
+      <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem; text-align: center;">Bienvenido</h2>
+      <p style="color: var(--text-light); text-align: center; margin-bottom: 2rem;">Elige tu perfil para continuar</p>
+
+      <div class="auth-tabs" style="display:flex; border-bottom: 1px solid var(--border); margin-bottom: 1.5rem;">
+        <button id="tab-login" class="auth-tab active"
+          style="flex:1; padding: 10px; background: transparent; border: none; border-bottom: 2px solid var(--primary); color: var(--primary); font-weight: 600; cursor:pointer;">Iniciar Sesión</button>
+        <button id="tab-register" class="auth-tab"
+          style="flex:1; padding: 10px; background: transparent; border: none; border-bottom: 2px solid transparent; color: var(--text-light); font-weight: 600; cursor:pointer;">Registrarse</button>
+      </div>
+
+      <form id="auth-form">
+        <input type="hidden" id="auth-mode" value="login">
+        <div id="register-fields" style="display:none;">
+          <input type="text" placeholder="Nombre completo" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid var(--border);">
+        </div>
+        <input type="email" placeholder="Email" required style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid var(--border);">
+        <input type="password" placeholder="Contraseña" required style="width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 8px; border: 1px solid var(--border);">
+        <button type="submit" id="auth-submit-btn" class="btn-primary" style="width: 100%;">Entrar</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ACCOUNT MODAL (PROFILE & MANAGEMENT) -->
+  <div class="modal" id="account-modal">
+    <div class="modal-content" style="max-width: 600px;">
+      <button class="modal-close" id="account-close"><i data-lucide="x"></i></button>
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; text-align: center;">Mi Cuenta</h2>
+      
+      <div id="profile-view">
+        <div style="background: rgba(99, 102, 241, 0.1); padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+          <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 5px;">Correo electrónico</p>
+          <p id="profile-email" style="font-weight: 600; font-size: 1.1rem;"></p>
+        </div>
+        
+        <h3 style="font-size: 1.1rem; margin-bottom: 15px;">Mis Servicios Publicados</h3>
+        <div id="user-services-list" style="display: flex; flex-direction: column; gap: 10px; max-height: 300px; overflow-y: auto; padding-right: 10px;">
+          <!-- Los servicios del usuario aparecerán aquí -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- ── CUSTOM NOTIFICATIONS ── -->
+    <div id="toast-container"></div>
+
+    <div id="confirm-modal">
+      <div class="confirm-card">
+        <h3 id="confirm-title" style="margin-bottom: 1rem;">¿Estás seguro?</h3>
+        <p id="confirm-msg" style="color: var(--text-light); margin-bottom: 2rem;">Esta acción no se puede deshacer.</p>
+        <div class="confirm-btns">
+          <button id="confirm-cancel" class="btn-secondary">Cancelar</button>
+          <button id="confirm-ok" class="btn-primary">Confirmar</button>
+        </div>
+      </div>
+    </div>
+
   <script src="../js/data.js"></script>
-  <script src="../js/main.js" defer></script>
+  <script type="module" src="../js/main.js"></script>
 </body>
 </html>

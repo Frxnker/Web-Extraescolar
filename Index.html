@@ -45,13 +45,14 @@
   <!-- Mobile Navigation Overlay -->
   <div class="mobile-overlay" id="mobile-overlay"></div>
   <nav class="mobile-nav" id="mobile-nav">
-    <ul>
+    <ul id="mobile-menu-list">
       <li><a href="#hero">Inicio</a></li>
       <li><a href="#actividades">Actividades</a></li>
       <li><a href="#proceso">Cómo Funciona</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#contacto">Contacto</a></li>
-      <li><button id="auth-trigger-mobile" class="btn-primary" style="width:100%; margin-top: 1rem;">Acceder</button>
+      <li id="user-actions-mobile">
+        <button id="auth-trigger-mobile" class="btn-primary" style="width:100%; margin-top: 1rem;">Acceder</button>
       </li>
     </ul>
   </nav>
@@ -70,11 +71,9 @@
     </nav>
 
     <div class="nav-actions">
-      <button id="theme-toggle" title="Cambiar tema">
-        <i data-lucide="moon"></i>
-      </button>
-      <a href="#buscar" class="btn-secondary">Buscar</a>
-      <button id="add-service-trigger" class="btn-primary">Publicar Servicio</button>
+      <div id="user-actions" class="user-actions-container">
+        <button id="auth-trigger" class="btn-primary">Iniciar Sesión</button>
+      </div>
       <button class="menu-toggle" id="menu-toggle">
         <i data-lucide="menu"></i>
       </button>
@@ -138,15 +137,15 @@
 
       <div class="trust-strip reveal-delay-3">
         <div class="stat">
-          <div class="stat-num">500+</div>
+          <div class="stat-num" id="stat-activities">0</div>
           <div class="stat-label">Actividades</div>
         </div>
         <div class="stat">
-          <div class="stat-num">12k</div>
+          <div class="stat-num" id="stat-users">0</div>
           <div class="stat-label">Usuarios</div>
         </div>
         <div class="stat">
-          <div class="stat-num">4.9</div>
+          <div class="stat-num" id="stat-rating">0</div>
           <div class="stat-label">Valoración</div>
         </div>
       </div>
@@ -205,35 +204,6 @@
       </div>
     </section>
 
-    <!-- ═══════════ TESTIMONIALS ═══════════ -->
-    <section class="bg-surface">
-      <div class="reveal">
-        <div class="section-label">Comunidad</div>
-        <h2>Opiniones de <em>Familias</em></h2>
-      </div>
-
-      <div class="testi-wrap reveal">
-        <div class="testi-track">
-          <div class="testi-card">
-            <div class="stars">★★★★★</div>
-            <p class="testi-text">"La mejor plataforma para encontrar actividades. Muy fácil de usar y con centros de mucha confianza."</p>
-            <div class="testi-author">
-              <div class="testi-avatar" style="background:#6366f1;">M</div>
-              <div class="testi-name">Maria García</div>
-            </div>
-          </div>
-          <div class="testi-card">
-            <div class="stars">★★★★★</div>
-            <p class="testi-text">"He ahorrado muchísimo tiempo buscando clases de inglés para mis dos hijos. Todo centralizado."</p>
-            <div class="testi-author">
-              <div class="testi-avatar" style="background:#10b981;">J</div>
-              <div class="testi-name">Juan Pérez</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- ═══════════ FAQ ═══════════ -->
     <section id="faq">
       <div class="reveal">
@@ -257,34 +227,26 @@
       </div>
     </section>
 
-    <!-- ═══════════ CTA BAND ═══════════ -->
-    <section style="padding-top: 0;">
-      <div class="cta-band reveal">
-        <h2>Curso 2025 / 2026</h2>
-        <p>Reserva tu primera clase gratis hoy mismo o descarga nuestra guía educativa.</p>
-        <div style="display:flex; gap:15px; justify-content:center; flex-wrap:wrap;">
-          <button class="btn-primary" style="background: var(--surface); color: var(--primary);">Reserva Clase de
-            Prueba</button>
-          <button class="btn-secondary" style="border-color: rgba(255,255,255,0.5); color: white;">Descargar Guía
-            (PDF)</button>
-        </div>
-      </div>
-    </section>
 
-    <!-- ═══════════ MAPA ═══════════ -->
-    <section id="mapa" style="padding-top: 0;">
-      <div class="reveal" style="margin-bottom:2rem;">
-        <div class="section-label">Dónde estamos</div>
-        <h2>Mapa y <em>Contacto</em></h2>
-        <p class="section-intro">Encuentra los centros educativos que trabajan con nuestra plataforma en tu zona.</p>
+
+    <!-- ═══════════ SECCIÓN DE COMENTARIOS ═══════════ -->
+    <section id="comunidad" style="border-top: 1px solid var(--border);">
+      <div class="reveal">
+        <div class="section-label">Comunidad</div>
+        <h2>Comentarios de <em>Usuarios</em></h2>
+        <p class="section-intro">Comparte tu experiencia con la comunidad.</p>
       </div>
-      <div class="map-wrap reveal">
-        <iframe
-          id="google-map"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25382.31773218505!2d-4.439966!3d36.721261!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd72f7880aa29b3b%3A0x808dc6dbac8e8fce!2sM%C3%A1laga%2C%20Spain!5e0!3m2!1sen!2ses!4v1700000000000!5m2!1sen!2ses&style=element:geometry%7Ccolor:0x242f3e&style=element:labels.text.stroke%7Ccolor:0x242f3e&style=element:labels.text.fill%7Ccolor:0x746855"
-          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-          title="Mapa de centros educativos">
-        </iframe>
+
+      <div style="max-width: 800px; margin: 0 auto; padding: 0 20px;">
+        <!-- Formulario -->
+        <div id="comment-form-container" style="margin-bottom: 3rem;">
+          <!-- Se cargará dinámicamente -->
+        </div>
+
+        <!-- Lista -->
+        <div id="comments-list">
+          <!-- Los comentarios reales aparecerán aquí -->
+        </div>
       </div>
     </section>
 
@@ -439,9 +401,42 @@
       </div>
     </div>
 
+    <!-- ACCOUNT MODAL (PROFILE & MANAGEMENT) -->
+    <div class="modal" id="account-modal">
+      <div class="modal-content" style="max-width: 600px;">
+        <button class="modal-close" id="account-close"><i data-lucide="x"></i></button>
+        <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; text-align: center;">Mi Cuenta</h2>
+        
+        <div id="profile-view">
+          <div style="background: rgba(99, 102, 241, 0.1); padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+            <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 5px;">Correo electrónico</p>
+            <p id="profile-email" style="font-weight: 600; font-size: 1.1rem;"></p>
+          </div>
+          
+          <h3 style="font-size: 1.1rem; margin-bottom: 15px;">Mis Servicios Publicados</h3>
+          <div id="user-services-list" style="display: flex; flex-direction: column; gap: 10px; max-height: 300px; overflow-y: auto; padding-right: 10px;">
+            <!-- Los servicios del usuario aparecerán aquí -->
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- JS -->
     <script src="js/data.js"></script>
-    <script src="js/main.js" defer></script>
+    <script type="module" src="js/main.js"></script>
+    <!-- ── CUSTOM NOTIFICATIONS ── -->
+    <div id="toast-container"></div>
+
+    <div id="confirm-modal">
+      <div class="confirm-card">
+        <h3 id="confirm-title" style="margin-bottom: 1rem;">¿Estás seguro?</h3>
+        <p id="confirm-msg" style="color: var(--text-light); margin-bottom: 2rem;">Esta acción no se puede deshacer.</p>
+        <div class="confirm-btns">
+          <button id="confirm-cancel" class="btn-secondary">Cancelar</button>
+          <button id="confirm-ok" class="btn-primary">Confirmar</button>
+        </div>
+      </div>
+    </div>
   </main>
 </body>
 
