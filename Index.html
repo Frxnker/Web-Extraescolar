@@ -84,6 +84,10 @@
                 <i data-lucide="moon" class="dark-icon"></i>
                 <i data-lucide="sun" class="light-icon" style="display: none;"></i>
             </button>
+            <button id="auth-trigger" class="btn-secondary" style="min-height: 48px; padding: 0 1rem; border-radius: 12px; display: flex; align-items: center; gap: 0.5rem; border: 1px solid var(--border); background: var(--surface); color: var(--text);">
+                <i data-lucide="user"></i>
+                <span class="desktop-only">Acceder</span>
+            </button>
             <a href="#" class="btn-primary">Agenda una Llamada</a>
             <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
                 <i data-lucide="menu"></i>
@@ -283,6 +287,62 @@
         </section>
     </main>
 
+    <!-- Auth Modal -->
+    <div class="modal-overlay" id="auth-modal">
+        <div class="modal-card">
+            <button class="modal-close" id="modal-close">&times;</button>
+            
+            <div class="auth-header">
+                <h2>Bienvenido a Extraescolar</h2>
+                <p>Elige tu perfil para continuar</p>
+            </div>
+
+            <div class="user-type-selector">
+                <button class="type-btn active" data-type="family">
+                    <i data-lucide="users"></i>
+                    <span>Soy Familia</span>
+                </button>
+                <button class="type-btn" data-type="pro">
+                    <i data-lucide="briefcase"></i>
+                    <span>Soy Profesional</span>
+                </button>
+            </div>
+
+            <div class="auth-tabs">
+                <button class="tab-btn active" data-tab="login">Entrar</button>
+                <button class="tab-btn" data-tab="register">Registrarse</button>
+            </div>
+
+            <form id="auth-form" class="auth-form">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="ejemplo@correo.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
+                
+                <div id="pro-fields" style="display: none;">
+                    <div class="form-group">
+                        <label for="cif">CIF / NIF (Profesional)</label>
+                        <input type="text" id="cif" placeholder="B12345678">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary w-full">Continuar</button>
+                
+                <div class="social-auth">
+                    <p>O accede con</p>
+                    <div class="social-btns">
+                        <button type="button" class="btn-social"><i data-lucide="chrome"></i> Google</button>
+                        <button type="button" class="btn-social"><i data-lucide="apple"></i> Apple</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <footer role="contentinfo">
         <div class="footer-content">
             <div class="footer-brand">
@@ -367,6 +427,27 @@
 
         menuToggle.addEventListener('click', toggleMenu);
         mobileOverlay.addEventListener('click', toggleMenu);
+
+        // Auth Modal Logic
+        const authTrigger = document.getElementById('auth-trigger');
+        const authModal = document.getElementById('auth-modal');
+        const modalClose = document.getElementById('modal-close');
+        const typeBtns = document.querySelectorAll('.type-btn');
+        const proFields = document.getElementById('pro-fields');
+
+        authTrigger.addEventListener('click', () => authModal.classList.add('active'));
+        modalClose.addEventListener('click', () => authModal.classList.remove('active'));
+        authModal.addEventListener('click', (e) => {
+            if (e.target === authModal) authModal.classList.remove('active');
+        });
+
+        typeBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                typeBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                proFields.style.display = btn.dataset.type === 'pro' ? 'block' : 'none';
+            });
+        });
     </script>
 </body>
 
