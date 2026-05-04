@@ -1,0 +1,452 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web-Extraescolar — Plataforma Integral de Actividades</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<!-- estilos extraídos a css/styles.css -->
+</head>
+<body>
+
+<!-- ═══════════ HEADER ═══════════ -->
+<header>
+  <a href="#" class="logo">
+    <svg class="logo-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="36" height="36" rx="8" fill="rgba(26,143,255,0.12)"/>
+      <path d="M18 5 C18 5 11 11 11 20 C11 24 13.5 26.5 18 28 C22.5 26.5 25 24 25 20 C25 11 18 5 18 5Z" fill="#1a8fff"/>
+      <ellipse cx="18" cy="20" rx="3" ry="3.5" fill="#080f1e"/>
+      <path d="M13 25 L11 31 L15 29 Z" fill="#ff6b2b"/>
+      <path d="M23 25 L25 31 L21 29 Z" fill="#ff6b2b"/>
+      <circle cx="18" cy="14" r="2.5" fill="#fff" opacity="0.7"/>
+    </svg>
+    Web-<span>Extraescolar</span>
+  </a>
+  <nav>
+    <a href="#hero">Inicio</a>
+    <a href="#activities">Actividades</a>
+    <a href="#features">Inscripción</a>
+    <a href="#testimonials">Nosotros</a>
+    <a href="#mapa" class="nav-cta">Contacto</a>
+  </nav>
+</header>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+
+  <!-- floating rockets -->
+  <svg class="rocket-float r1" width="80" height="80" viewBox="0 0 80 80" fill="none">
+    <path d="M40 8 C40 8 22 22 22 50 C22 62 29 68 40 72 C51 68 58 62 58 50 C58 22 40 8 40 8Z" fill="white"/>
+    <ellipse cx="40" cy="50" rx="7" ry="8" fill="#111"/>
+    <path d="M30 62 L25 76 L36 70Z" fill="#ff6b2b"/>
+    <path d="M50 62 L55 76 L44 70Z" fill="#ff6b2b"/>
+  </svg>
+  <svg class="rocket-float r2" width="60" height="60" viewBox="0 0 60 60" fill="none">
+    <path d="M30 6 C30 6 16.5 16.5 16.5 37.5 C16.5 46.5 21.75 51 30 54 C38.25 51 43.5 46.5 43.5 37.5 C43.5 16.5 30 6 30 6Z" fill="white"/>
+    <ellipse cx="30" cy="37.5" rx="5.25" ry="6" fill="#111"/>
+    <path d="M22.5 46.5 L18.75 57 L27 52.5Z" fill="#ff6b2b"/>
+    <path d="M37.5 46.5 L41.25 57 L33 52.5Z" fill="#ff6b2b"/>
+  </svg>
+  <svg class="rocket-float r3" width="50" height="50" viewBox="0 0 50 50" fill="none">
+    <path d="M25 5 C25 5 13.75 13.75 13.75 31.25 C13.75 38.75 18.125 42.5 25 45 C31.875 42.5 36.25 38.75 36.25 31.25 C36.25 13.75 25 5 25 5Z" fill="white"/>
+    <ellipse cx="25" cy="31.25" rx="4.375" ry="5" fill="#111"/>
+    <path d="M18.75 38.75 L15.625 47.5 L22.5 43.75Z" fill="#ff6b2b"/>
+    <path d="M31.25 38.75 L34.375 47.5 L27.5 43.75Z" fill="#ff6b2b"/>
+  </svg>
+
+  <div class="hero-content reveal">
+    <div class="hero-badge"><span></span>Nueva plataforma educativa 2024</div>
+    <h1>Plataforma <em>Integral</em> de Gestión de Actividades<br>Extraescolares</h1>
+    <p class="hero-sub">Conectamos familias, centros educativos y monitores en un único ecosistema digital para simplificar la organización de actividades extraescolares.</p>
+    <div>
+      <a href="#activities" class="btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        Descubre Actividades y Regístrate
+      </a>
+      <a href="#features" class="btn-secondary">Saber más →</a>
+    </div>
+
+    <div class="stats-strip">
+      <div class="stat">
+        <div class="stat-num">2,400+</div>
+        <div class="stat-label">Alumnos inscritos</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">340</div>
+        <div class="stat-label">Actividades activas</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">58</div>
+        <div class="stat-label">Centros educativos</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">98%</div>
+        <div class="stat-label">Satisfacción familias</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════ ACTIVITIES ═══════════ -->
+<section id="activities">
+  <div class="act-header reveal">
+    <div>
+      <div class="section-label">Catálogo completo</div>
+      <h2>Nuestra <em>Oferta</em></h2>
+      <p class="section-intro">Actividades cuidadosamente seleccionadas para el desarrollo integral de cada alumno.</p>
+    </div>
+    <a href="#" class="btn-secondary">Ver todas →</a>
+  </div>
+
+  <div class="act-grid">
+    <!-- Row 1 -->
+    <div class="act-card reveal reveal-delay-1">
+      <div style="overflow:hidden;height:180px;">
+        <img class="act-img" src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80" alt="Robótica">
+      </div>
+      <div class="act-pill">Nuevas plazas</div>
+      <div class="act-body">
+        <div class="act-cat">Ciencia y Tecnología</div>
+        <div class="act-title">Robótica e Inteligencia Artificial</div>
+      </div>
+    </div>
+
+    <div class="act-card reveal reveal-delay-2">
+      <div style="overflow:hidden;height:180px;">
+        <img class="act-img" src="https://images.unsplash.com/photo-1615729947596-a598e5de0ab3?w=600&q=80" alt="Manualidades">
+      </div>
+      <div class="act-body">
+        <div class="act-cat">Arte y Creatividad</div>
+        <div class="act-title">Manualidades y Artes Plásticas</div>
+      </div>
+    </div>
+
+    <div class="act-card reveal reveal-delay-3">
+      <div style="overflow:hidden;height:180px;">
+        <img class="act-img" src="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=600&q=80" alt="Ballet">
+      </div>
+      <div class="act-body">
+        <div class="act-cat">Deporte y Salud</div>
+        <div class="act-title">Ballet y Danza Contemporánea</div>
+      </div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="act-card reveal reveal-delay-1">
+      <div style="overflow:hidden;height:180px;">
+        <img class="act-img" src="https://images.unsplash.com/photo-1580541832626-2a7131ee809f?w=600&q=80" alt="Ajedrez">
+      </div>
+      <div class="act-pill">Popular</div>
+      <div class="act-body">
+        <div class="act-cat">Arte y Creatividad</div>
+        <div class="act-title">Ajedrez Competitivo</div>
+      </div>
+    </div>
+
+    <div class="act-card reveal reveal-delay-2">
+      <div style="overflow:hidden;height:180px;">
+        <img class="act-img" src="https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=600&q=80" alt="Orquesta">
+      </div>
+      <div class="act-body">
+        <div class="act-cat">Deporte y Salud</div>
+        <div class="act-title">Orquesta Escolar Juvenil</div>
+      </div>
+    </div>
+
+    <div class="act-card reveal reveal-delay-3">
+      <div style="overflow:hidden;height:180px;">
+        <img class="act-img" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&q=80" alt="Programación">
+      </div>
+      <div class="act-body">
+        <div class="act-cat">Ciencia y Tecnología</div>
+        <div class="act-title">Programación y Videojuegos</div>
+      </div>
+    </div>
+
+    <!-- Row 3 -->
+    <div class="act-card reveal reveal-delay-1">
+      <div style="overflow:hidden;height:180px;">
+        <img class="act-img" src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80" alt="Deporte">
+      </div>
+      <div class="act-body">
+        <div class="act-cat">Deporte y Salud</div>
+        <div class="act-title">Natación y Aquagym</div>
+      </div>
+    </div>
+
+    <div class="act-card reveal reveal-delay-2">
+      <div style="overflow:hidden;height:180px;">
+        <img class="act-img" src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&q=80" alt="Idiomas">
+      </div>
+      <div class="act-pill">Nuevo</div>
+      <div class="act-body">
+        <div class="act-cat">Idiomas y Cultura</div>
+        <div class="act-title">English Immersion Club</div>
+      </div>
+    </div>
+
+    <div class="act-card reveal reveal-delay-3">
+      <div style="overflow:hidden;height:180px;">
+        <img class="act-img" src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?w=600&q=80" alt="Yoga">
+      </div>
+      <div class="act-body">
+        <div class="act-cat">Deporte y Salud</div>
+        <div class="act-title">Yoga y Mindfulness Infantil</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════ FEATURES ═══════════ -->
+<section id="features">
+  <div class="reveal">
+    <div class="section-label">Herramientas del sistema</div>
+    <h2>Gestión <em>Simplificada</em></h2>
+    <p class="section-intro">Todo lo que necesitas para gestionar extraescolares de forma eficiente y transparente.</p>
+  </div>
+
+  <div class="feat-grid">
+    <div class="feat-card reveal reveal-delay-1">
+      <div class="feat-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1a8fff" stroke-width="1.8">
+          <rect x="3" y="4" width="18" height="16" rx="2"/>
+          <path d="M3 9h18M8 2v4M16 2v4"/>
+          <path d="M8 13h2M8 16h5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3>Inscripción Segura</h3>
+      <p>Formularios digitales con firma electrónica, gestión de pagos integrada y confirmaciones automáticas en tiempo real para padres y tutores.</p>
+    </div>
+
+    <div class="feat-card reveal reveal-delay-2">
+      <div class="feat-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1a8fff" stroke-width="1.8">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M12 6v6l4 2" stroke-linecap="round"/>
+          <path d="M5 5l1.5 1.5M19 5l-1.5 1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3>Calendarios Dinámicos</h3>
+      <p>Visualización inteligente de horarios con sincronización automática al calendario personal. Alertas de cambios, festivos y eventos especiales.</p>
+    </div>
+
+    <div class="feat-card reveal reveal-delay-3">
+      <div class="feat-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1a8fff" stroke-width="1.8">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+        </svg>
+      </div>
+      <h3>Información en Tiempo Real</h3>
+      <p>Panel de control con estadísticas de asistencia, progreso individual del alumno, notificaciones push y reportes descargables para directores y familias.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════ TESTIMONIALS ═══════════ -->
+<section id="testimonials">
+  <div class="reveal" style="margin-bottom:2.5rem;">
+    <div class="section-label">Lo que dicen de nosotros</div>
+    <h2><em>Testimonios</em></h2>
+  </div>
+
+  <div class="testi-wrap reveal">
+    <div style="overflow:hidden;">
+      <div class="testi-track" id="testiTrack">
+
+        <div class="testi-card">
+          <div class="testi-quote">"</div>
+          <p class="testi-text">Desde que el colegio implementó Web-Extraescolar, organizar las actividades de mis hijos es pan comido. Todo en un solo lugar, sin papeles ni confusiones. ¡Es fantástico!</p>
+          <div class="testi-author">
+            <img class="testi-avatar" src="https://i.pravatar.cc/88?img=47" alt="María García">
+            <div>
+              <div class="testi-name">María García</div>
+              <div class="testi-role">Parent of Student · IES Cervantes, Málaga</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card">
+          <div class="testi-quote">"</div>
+          <p class="testi-text">Como directora, necesitaba una herramienta que integrara todo el ciclo administrativo. Esta plataforma ha reducido nuestro trabajo de gestión en un 60%. Totalmente recomendada.</p>
+          <div class="testi-author">
+            <img class="testi-avatar" src="https://i.pravatar.cc/88?img=9" alt="Ana Molina">
+            <div>
+              <div class="testi-name">Ana Molina</div>
+              <div class="testi-role">Directora escolar · CEIP Los Pinos, Sevilla</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card">
+          <div class="testi-quote">"</div>
+          <p class="testi-text">Mis alumnos de robótica llegan más motivados porque sus padres pueden ver el progreso directamente. La comunicación ha mejorado enormemente con esta plataforma.</p>
+          <div class="testi-author">
+            <img class="testi-avatar" src="https://i.pravatar.cc/88?img=12" alt="Carlos Reyes">
+            <div>
+              <div class="testi-name">Carlos Reyes</div>
+              <div class="testi-role">Monitor de Robótica · Centro TechKids</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card">
+          <div class="testi-quote">"</div>
+          <p class="testi-text">Antes recibía 20 emails al día con dudas de horarios. Ahora casi ninguno. El calendario dinámico ha transformado la forma en que nos comunicamos con las familias.</p>
+          <div class="testi-author">
+            <img class="testi-avatar" src="https://i.pravatar.cc/88?img=32" alt="Lucía Fernández">
+            <div>
+              <div class="testi-name">Lucía Fernández</div>
+              <div class="testi-role">Coordinadora de Extraescolares · Colegio Bilingüe Norte</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card">
+          <div class="testi-quote">"</div>
+          <p class="testi-text">El módulo de pagos integrado ha eliminado los retrasos de cobro. Los padres pagan online sin estrés y nosotros recibimos el ingreso automáticamente. Excelente.</p>
+          <div class="testi-author">
+            <img class="testi-avatar" src="https://i.pravatar.cc/88?img=65" alt="Pablo Ruiz">
+            <div>
+              <div class="testi-name">Pablo Ruiz</div>
+              <div class="testi-role">Gerente · Escuela de Música Arpegio</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="testi-nav">
+      <button class="testi-btn" id="prevBtn" onclick="moveCarousel(-1)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="testi-btn" id="nextBtn" onclick="moveCarousel(1)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════ MAP ═══════════ -->
+<section id="mapa" style="padding:80px 5%;">
+  <div class="reveal" style="margin-bottom:2rem;">
+    <div class="section-label">Dónde estamos</div>
+    <h2>Mapa y <em>Contacto</em></h2>
+    <p class="section-intro">Encuentra los centros educativos que trabajan con nuestra plataforma en tu zona.</p>
+  </div>
+
+  <div class="map-wrap reveal">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25382.31773218505!2d-4.439966!3d36.721261!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd72f7880aa29b3b%3A0x808dc6dbac8e8fce!2sM%C3%A1laga%2C%20Spain!5e0!3m2!1sen!2ses!4v1700000000000!5m2!1sen!2ses&style=element:geometry%7Ccolor:0x242f3e&style=element:labels.text.stroke%7Ccolor:0x242f3e&style=element:labels.text.fill%7Ccolor:0x746855"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Mapa de centros educativos">
+    </iframe>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="logo" style="font-size:1.05rem;">
+        <svg width="30" height="30" viewBox="0 0 36 36" fill="none">
+          <rect width="36" height="36" rx="8" fill="rgba(26,143,255,0.12)"/>
+          <path d="M18 5 C18 5 11 11 11 20 C11 24 13.5 26.5 18 28 C22.5 26.5 25 24 25 20 C25 11 18 5 18 5Z" fill="#1a8fff"/>
+          <ellipse cx="18" cy="20" rx="3" ry="3.5" fill="#080f1e"/>
+          <path d="M13 25 L11 31 L15 29 Z" fill="#ff6b2b"/>
+          <path d="M23 25 L25 31 L21 29 Z" fill="#ff6b2b"/>
+          <circle cx="18" cy="14" r="2.5" fill="#fff" opacity="0.7"/>
+        </svg>
+        Web-<span>Extraescolar</span>
+      </a>
+      <p>La plataforma integral que transforma la gestión de actividades extraescolares para centros educativos y familias.</p>
+    </div>
+
+    <div>
+      <h4>Navegación</h4>
+      <ul class="footer-links">
+        <li><a href="#hero">Inicio</a></li>
+        <li><a href="#activities">Actividades</a></li>
+        <li><a href="#features">Inscripción</a></li>
+        <li><a href="#testimonials">Nosotros</a></li>
+        <li><a href="#mapa">Contacto</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4>Legal</h4>
+      <ul class="footer-links">
+        <li><a href="#">Privacidad</a></li>
+        <li><a href="#">Términos de uso</a></li>
+        <li><a href="#">RGPD</a></li>
+        <li><a href="#">Cookies</a></li>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4>Boletín</h4>
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:0.8rem;">Recibe novedades, nuevas actividades y recursos educativos.</p>
+      <div class="newsletter-form">
+        <input type="email" placeholder="tu@correo.es">
+        <button>Unirse</button>
+      </div>
+      <h4 style="margin-top:2rem;">Contacto</h4>
+      <div class="contact-line">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        +34 951 234 567
+      </div>
+      <div class="contact-line">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        +34 601 876 543
+      </div>
+      <div class="contact-line">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        hola@web-extraescolar.es
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="copyright">© 2024 Web-Extraescolar · Todos los derechos reservados</div>
+    <div class="social-icons">
+      <!-- Facebook -->
+      <a href="#" class="social-icon">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+      </a>
+      <!-- Instagram -->
+      <a href="#" class="social-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <!-- Twitter/X -->
+      <a href="#" class="social-icon">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <!-- YouTube -->
+      <a href="#" class="social-icon">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.95C18.88 4 12 4 12 4s-6.88 0-8.59.47a2.78 2.78 0 00-1.95 1.95A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.5C5.12 20 12 20 12 20s6.88 0 8.59-.5a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58zM9.75 15.02V8.98L15.5 12z"/></svg>
+      </a>
+      <!-- LinkedIn -->
+      <a href="#" class="social-icon">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js" defer></script>
+<!-- lógica extraída a js/main.js -->
+</body>
+</html>
