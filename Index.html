@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plataforma Integral Extraescolar</title>
+  <meta name="description"
+    content="Centro de actividades extraescolares y plataforma integral. Robótica, Inglés, Fútbol y Arte para niños.">
+
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="dark-mode">
+
+  <!-- Mobile Navigation Overlay -->
+  <div class="mobile-overlay" id="mobile-overlay"></div>
+  <nav class="mobile-nav" id="mobile-nav">
+    <ul>
+      <li><a href="#hero">Inicio</a></li>
+      <li><a href="#actividades">Actividades</a></li>
+      <li><a href="#proceso">Cómo Funciona</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+      <li><button id="auth-trigger-mobile" class="btn-primary" style="width:100%; margin-top: 1rem;">Acceder</button>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- ═══════════ HEADER ═══════════ -->
+  <header>
+    <a href="#" class="brand">
+      <i data-lucide="graduation-cap"></i>
+      Web-<span>Extraescolar</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#hero">Inicio</a>
+      <a href="#proceso">Cómo Funciona</a>
+      <a href="#actividades">Actividades</a>
+      <a href="#faq">Preguntas</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <div class="nav-actions">
+      <button id="theme-toggle" title="Cambiar tema">
+        <i data-lucide="sun" class="light-icon" style="display: none;"></i>
+        <i data-lucide="moon" class="dark-icon"></i>
+      </button>
+      <button id="auth-trigger" class="btn-secondary">
+        <i data-lucide="user"></i> Acceder
+      </button>
+      <button class="menu-toggle" id="menu-toggle">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- ═══════════ HERO ═══════════ -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content reveal">
+      <div class="hero-badge">Nueva plataforma educativa 2026</div>
+      <h1>Despierta el <em>talento</em> de tus hijos después del colegio</h1>
+      <p class="hero-sub">Conectamos a familias exigentes con los mejores profesionales y centros extraescolares para
+        potenciar el talento único de cada niño.</p>
+
+      <!-- Búsqueda Fran -->
+      <div
+        style="background: var(--surface); padding: 0.5rem 0.5rem 0.5rem 1rem; border-radius: 50px; display: inline-flex; align-items: center; border: 1px solid var(--border); margin-bottom: 2rem; width: 100%; max-width: 500px;">
+        <i data-lucide="search" style="color: var(--text-light); width: 20px;"></i>
+        <input type="text" placeholder="¿Qué habilidad quieres potenciar?"
+          style="border: none; background: transparent; flex: 1; padding: 0.5rem; outline: none; margin: 0; color: var(--text);">
+        <button class="btn-primary" style="border-radius: 50px; padding: 8px 20px; min-height: 40px;">Buscar</button>
+      </div>
+    </div>
+
+    <!-- Trust Chips Juanan -->
+    <div class="hero-visual reveal reveal-delay-2">
+      <div class="hero-float-chip top">
+        <div class="avatar-stack">
+          <div style="background:#6366f1">LC</div>
+          <div style="background:#f97316">MR</div>
+          <div style="background:#10b981">AN</div>
+        </div>
+        <div>
+          <div style="font-size:0.9rem;">★★★★★ <strong style="color:var(--text)">4.9</strong></div>
+          <div style="font-size:0.7rem; color:var(--text-light)">2,400+ alumnos</div>
+        </div>
+      </div>
+      <div class="hero-float-chip bottom">
+        <div
+          style="background: var(--accent); color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;">
+          <i data-lucide="check" style="width: 14px;"></i></div>
+        <div>
+          <div style="font-weight:700; color:var(--text); font-size:0.85rem">Plazas libres</div>
+          <div style="font-size:0.7rem; color:var(--text-light)">Curso 2025/26</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <div class="trust-strip reveal">
+    <div class="stat">
+      <div class="stat-num">🎓</div>
+      <div class="stat-label">Profesores titulados</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">👥</div>
+      <div class="stat-label">Grupos reducidos</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">🚌</div>
+      <div class="stat-label">Recogida en colegios</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">🛡️</div>
+      <div class="stat-label">Pago Seguro SSL</div>
+    </div>
+  </div>
+
+  <!-- ═══════════ COMO FUNCIONA (Fran) ═══════════ -->
+  <section id="proceso">
+    <div class="reveal" style="text-align: center; margin-bottom: 3rem;">
+      <div class="section-label">Simplicidad</div>
+      <h2>Tu camino hacia la <em>excelencia</em></h2>
+      <p class="section-intro" style="margin: 0 auto;">Tres pasos para encontrar la actividad que cambiará el futuro de
+        tus hijos.</p>
+    </div>
+    <div class="process-grid">
+      <div class="process-step reveal reveal-delay-1">
+        <div class="step-icon">1</div>
+        <h3 style="margin-bottom: 0.5rem;">Busca</h3>
+        <p style="color: var(--text-light); font-size: 0.95rem;">Filtra por edad, ubicación y tipo de talento que deseas
+          desarrollar.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-2">
+        <div class="step-icon">2</div>
+        <h3 style="margin-bottom: 0.5rem;">Conecta</h3>
+        <p style="color: var(--text-light); font-size: 0.95rem;">Habla directamente con los instructores y resuelve tus
+          dudas.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-3">
+        <div class="step-icon">3</div>
+        <h3 style="margin-bottom: 0.5rem;">Reserva</h3>
+        <p style="color: var(--text-light); font-size: 0.95rem;">Asegura tu plaza de forma segura y comienza la
+          aventura.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ ACTIVIDADES ═══════════ -->
+  <section id="actividades" class="bg-surface">
+    <div class="reveal" style="margin-bottom: 3rem;">
+      <div class="section-label">Catálogo completo</div>
+      <h2>Una actividad para cada <em>personalidad</em></h2>
+      <p class="section-intro">Diseñadas para cada edad y cada inquietud. Desde los más curiosos hasta los más activos.
+      </p>
+    </div>
+
+    <div class="act-grid">
+      <div class="act-card reveal reveal-delay-1">
+        <div style="overflow:hidden; height: 180px;">
+          <img class="act-img" src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80"
+            alt="Robótica">
+        </div>
+        <div class="act-body">
+          <div class="act-cat">Ciencia y Tecnología</div>
+          <div class="act-title">Robótica & STEM 🤖</div>
+          <div class="act-age"><i data-lucide="users" style="width:14px;"></i> 6 - 16 años</div>
+        </div>
+      </div>
+      <div class="act-card reveal reveal-delay-2">
+        <div style="overflow:hidden; height: 180px;">
+          <img class="act-img" src="https://images.unsplash.com/photo-1615729947596-a598e5de0ab3?w=600&q=80"
+            alt="Manualidades">
+        </div>
+        <div class="act-body">
+          <div class="act-cat">Arte y Creatividad</div>
+          <div class="act-title">Arte & Creatividad 🎨</div>
+          <div class="act-age"><i data-lucide="users" style="width:14px;"></i> 4 - 14 años</div>
+        </div>
+      </div>
+      <div class="act-card reveal reveal-delay-3">
+        <div style="overflow:hidden; height: 180px;">
+          <img class="act-img" src="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=600&q=80"
+            alt="Ballet">
+        </div>
+        <div class="act-body">
+          <div class="act-cat">Deporte y Salud</div>
+          <div class="act-title">Danza & Movimiento 💃</div>
+          <div class="act-age"><i data-lucide="users" style="width:14px;"></i> 3 - 16 años</div>
+        </div>
+      </div>
+      <div class="act-card reveal reveal-delay-1">
+        <div style="overflow:hidden; height: 180px;">
+          <img class="act-img" src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80"
+            alt="Deporte">
+        </div>
+        <div class="act-body">
+          <div class="act-cat">Deporte y Salud</div>
+          <div class="act-title">Escuela de Fútbol ⚽</div>
+          <div class="act-age"><i data-lucide="users" style="width:14px;"></i> 4 - 16 años</div>
+        </div>
+      </div>
+      <div class="act-card reveal reveal-delay-2">
+        <div style="overflow:hidden; height: 180px;">
+          <img class="act-img" src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&q=80"
+            alt="Idiomas">
+        </div>
+        <div class="act-body">
+          <div class="act-cat">Idiomas y Cultura</div>
+          <div class="act-title">Inglés Conversacional 🇬🇧</div>
+          <div class="act-age"><i data-lucide="users" style="width:14px;"></i> 3 - 16 años</div>
+        </div>
+      </div>
+      <div class="act-card reveal reveal-delay-3">
+        <div style="overflow:hidden; height: 180px;">
+          <img class="act-img" src="https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=600&q=80"
+            alt="Música">
+        </div>
+        <div class="act-body">
+          <div class="act-cat">Arte y Creatividad</div>
+          <div class="act-title">Música & Instrumentos 🎵</div>
+          <div class="act-age"><i data-lucide="users" style="width:14px;"></i> 5 - 16 años</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ FEATURES / WHY US (Juanan) ═══════════ -->
+  <section id="features">
+    <div class="reveal">
+      <div class="section-label">Por qué elegirnos</div>
+      <h2>Tranquilidad para ti,<br><em>diversión</em> para ellos.</h2>
+      <p class="section-intro">Llevamos cuidando lo más importante de 2400+ familias. Estos son los detalles que marcan
+        la diferencia.</p>
+    </div>
+
+    <div class="feat-grid">
+      <div class="feat-card reveal reveal-delay-1">
+        <i data-lucide="graduation-cap" class="feat-icon"></i>
+        <h3>Profesores Titulados</h3>
+        <p style="color: var(--text-light); font-size: 0.9rem;">Titulación específica y certificados de idoneidad para
+          trabajar con menores.</p>
+      </div>
+      <div class="feat-card reveal reveal-delay-2">
+        <i data-lucide="smartphone" class="feat-icon"></i>
+        <h3>App para Padres</h3>
+        <p style="color: var(--text-light); font-size: 0.9rem;">Asistencia, progreso y notificaciones en tiempo real
+          directamente en tu móvil.</p>
+      </div>
+      <div class="feat-card reveal reveal-delay-3">
+        <i data-lucide="shield-check" class="feat-icon"></i>
+        <h3>Entorno Seguro</h3>
+        <p style="color: var(--text-light); font-size: 0.9rem;">Seguro escolar, instalaciones homologadas y protocolos
+          de emergencia.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ TESTIMONIALS (Original Carousel + Juanan Content) ═══════════ -->
+  <section id="testimonials" class="bg-surface">
+    <div class="reveal" style="margin-bottom: 2rem; text-align: center;">
+      <div class="section-label">Opiniones reales</div>
+      <h2>127 familias ya <em>confían</em> en nosotros</h2>
+      <p class="section-intro" style="margin:0 auto;">Reseñas verificadas de Google. Sin filtros.</p>
+    </div>
+
+    <div class="testi-wrap reveal">
+      <div class="testi-track" id="testiTrack">
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text">"Mi hija lleva dos años en robótica y ha cambiado completamente. Los profes son
+            increíbles y muy cercanos con los padres."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">LC</div>
+            <div>
+              <div class="testi-name">Laura C.</div>
+              <div style="font-size:0.8rem; color:var(--text-light)">Mamá de Sofía, 9 años · Robótica</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text">"El servicio de recogida en el colegio es un salvavidas. Nuestro hijo vuelve a casa
+            feliz y con la merienda puesta."</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:#f97316">MR</div>
+            <div>
+              <div class="testi-name">Marcos R.</div>
+              <div style="font-size:0.8rem; color:var(--text-light)">Papá de Álvaro, 8 años · Inglés</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text">"Vinimos por la clase de prueba gratuita y nos quedamos para siempre. Los grupos
+            pequeños hacen toda la diferencia."</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:#10b981">AN</div>
+            <div>
+              <div class="testi-name">Ana N.</div>
+              <div style="font-size:0.8rem; color:var(--text-light)">Mamá de Carlos, 11 años · Fútbol</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text">"El módulo de pagos integrado ha eliminado los retrasos. Los padres pagan online sin
+            estrés y nosotros recibimos el ingreso automáticamente."</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:#8b5cf6">PR</div>
+            <div>
+              <div class="testi-name">Pablo Ruiz</div>
+              <div style="font-size:0.8rem; color:var(--text-light)">Gerente · Escuela de Música Arpegio</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ FAQ (Fran) ═══════════ -->
+  <section id="faq">
+    <div class="reveal" style="text-align: center; margin-bottom: 2rem;">
+      <div class="section-label">Transparencia</div>
+      <h2>Preguntas <em>Frecuentes</em></h2>
+    </div>
+    <div class="faq-grid reveal">
+      <details class="faq-item">
+        <summary>¿Cómo verificáis a los profesionales?</summary>
+        <p>Todos los instructores deben pasar una entrevista pedagógica y presentar su certificado de antecedentes
+          penales actualizado.</p>
+      </details>
+      <details class="faq-item">
+        <summary>¿Puedo cancelar una reserva?</summary>
+        <p>Sí, cada centro tiene su política pero garantizamos la devolución íntegra si se avisa con 48h de antelación.
+        </p>
+      </details>
+      <details class="faq-item">
+        <summary>¿Es seguro el pago?</summary>
+        <p>Utilizamos tecnología de cifrado de última generación (SSL) para que tus datos estén siempre protegidos.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- ═══════════ CTA / LEAD MAGNET ═══════════ -->
+  <section style="padding-top: 0;">
+    <div class="cta-band reveal">
+      <h2>Curso 2025 / 2026</h2>
+      <p>Reserva tu primera clase gratis hoy mismo o descarga nuestra guía educativa.</p>
+      <div style="display:flex; gap:15px; justify-content:center; flex-wrap:wrap;">
+        <button class="btn-primary" style="background: var(--surface); color: var(--primary);">Reserva Clase de
+          Prueba</button>
+        <button class="btn-secondary" style="border-color: rgba(255,255,255,0.5); color: white;">Descargar Guía
+          (PDF)</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ MAPA ═══════════ -->
+  <section id="mapa" style="padding-top: 0;">
+    <div class="reveal" style="margin-bottom:2rem;">
+      <div class="section-label">Dónde estamos</div>
+      <h2>Mapa y <em>Contacto</em></h2>
+      <p class="section-intro">Encuentra los centros educativos que trabajan con nuestra plataforma en tu zona.</p>
+    </div>
+    <div class="map-wrap reveal">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25382.31773218505!2d-4.439966!3d36.721261!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd72f7880aa29b3b%3A0x808dc6dbac8e8fce!2sM%C3%A1laga%2C%20Spain!5e0!3m2!1sen!2ses!4v1700000000000!5m2!1sen!2ses&style=element:geometry%7Ccolor:0x242f3e&style=element:labels.text.stroke%7Ccolor:0x242f3e&style=element:labels.text.fill%7Ccolor:0x746855"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="Mapa de centros educativos">
+      </iframe>
+    </div>
+  </section>
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <footer id="contacto">
+    <div class="footer-grid">
+      <div>
+        <a href="#" class="brand" style="margin-bottom: 1rem;">
+          <i data-lucide="graduation-cap"></i> Web-<span>Extraescolar</span>
+        </a>
+        <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 1.5rem;">La plataforma integral que
+          transforma la gestión de actividades extraescolares para centros educativos y familias.</p>
+        <div style="display:flex; gap:10px;">
+          <a href="#" style="color:var(--text-light);"><i data-lucide="instagram"></i></a>
+          <a href="#" style="color:var(--text-light);"><i data-lucide="linkedin"></i></a>
+          <a href="#" style="color:var(--text-light);"><i data-lucide="twitter"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4 style="margin-bottom: 1.5rem;">Navegación</h4>
+        <ul class="footer-links">
+          <li><a href="#hero">Inicio</a></li>
+          <li><a href="#actividades">Actividades</a></li>
+          <li><a href="#proceso">Cómo Funciona</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="margin-bottom: 1.5rem;">Legal</h4>
+        <ul class="footer-links">
+          <li><a href="pages/legal.html">Privacidad</a></li>
+          <li><a href="pages/legal.html">Términos de uso</a></li>
+          <li><a href="pages/legal.html">Cookies</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="margin-bottom: 1.5rem;">Contacto</h4>
+        <ul class="footer-links">
+          <li><i data-lucide="map-pin" style="width:14px; display:inline; vertical-align:middle;"></i> Centro de Málaga
+          </li>
+          <li><i data-lucide="phone" style="width:14px; display:inline; vertical-align:middle;"></i> +34 951 234 567
+          </li>
+          <li><i data-lucide="mail" style="width:14px; display:inline; vertical-align:middle;"></i>
+            hola@web-extraescolar.es</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 Web-Extraescolar. Todos los derechos reservados.
+    </div>
+  </footer>
+
+  <!-- ═══════════ FLOATING ELEMENTS ═══════════ -->
+  <!-- WhatsApp Button -->
+  <div class="whatsapp-float">
+    <a href="https://wa.me/34600000000" class="whatsapp-btn" aria-label="WhatsApp">
+      <i data-lucide="message-circle" style="width: 32px; height: 32px;"></i>
+    </a>
+  </div>
+
+  <!-- Cookie Banner -->
+  <div class="cookie-banner" id="cookie-banner">
+    <div>
+      <strong>🍪 Usamos cookies</strong> para mejorar su experiencia y analizar el tráfico. <a href="pages/legal.html"
+        style="color:var(--primary);">Política de Cookies</a>.
+    </div>
+    <div style="display:flex; gap:10px;">
+      <button class="btn-primary" id="accept-cookies"
+        style="padding: 5px 15px; min-height:30px; font-size:0.85rem;">Aceptar</button>
+      <button class="btn-secondary" style="padding: 5px 15px; min-height:30px; font-size:0.85rem;">Configurar</button>
+    </div>
+  </div>
+
+  <!-- Auth Modal -->
+  <div class="modal-overlay" id="auth-modal">
+    <div class="modal-card">
+      <button class="modal-close" id="modal-close"><i data-lucide="x"></i></button>
+      <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem; text-align: center;">Bienvenido</h2>
+      <p style="color: var(--text-light); text-align: center; margin-bottom: 2rem;">Elige tu perfil para continuar</p>
+
+      <div style="display:flex; border-bottom: 1px solid var(--border); margin-bottom: 1.5rem;">
+        <button
+          style="flex:1; padding: 10px; background: transparent; border: none; border-bottom: 2px solid var(--primary); color: var(--primary); font-weight: 600; cursor:pointer;">Familia</button>
+        <button
+          style="flex:1; padding: 10px; background: transparent; border: none; border-bottom: 2px solid transparent; color: var(--text-light); font-weight: 600; cursor:pointer;">Profesional</button>
+      </div>
+
+      <form>
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Contraseña" required>
+        <button type="submit" class="btn-primary" style="width: 100%;">Continuar</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script src="js/main.js" defer></script>
+</body>
+
+</html>
