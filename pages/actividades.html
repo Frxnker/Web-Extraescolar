@@ -92,15 +92,14 @@
     </section>
   </main>
 
-  <footer id="contacto">
-    <div class="footer-bottom">
-      © 2026 Web-Extraescolar. Todos los derechos reservados.
-    </div>
-  </footer>
+  <!-- FLOATING ACTION BUTTON -->
+  <button id="add-service-trigger-fab" class="fab" title="Publicar Servicio">
+    <i data-lucide="plus"></i>
+  </button>
 
-  <!-- Add Service Modal -->
-  <div class="modal-overlay" id="service-modal">
-    <div class="modal-card">
+  <!-- ADD SERVICE MODAL -->
+  <div class="modal" id="service-modal">
+    <div class="modal-content">
       <button class="modal-close" id="service-close"><i data-lucide="x"></i></button>
       <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem; text-align: center;">Publicar Nuevo Servicio</h2>
       <form id="service-form">
@@ -140,6 +139,13 @@
       </form>
     </div>
   </div>
+
+  <footer id="contacto">
+    <div class="footer-bottom">
+      © 2026 Web-Extraescolar. Todos los derechos reservados.
+    </div>
+  </footer>
+
 
   <script src="../js/data.js"></script>
   <script src="../js/main.js" defer></script>

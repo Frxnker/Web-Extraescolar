@@ -217,8 +217,7 @@ function renderServices(filterCat = 'all', query = '') {
     activitiesContainer.innerHTML = `
       <div style="grid-column: 1 / -1; text-align: center; padding: 4rem; color: var(--text-light);">
         <i data-lucide="${isSearch ? 'search-x' : 'inbox'}" style="width: 48px; height: 48px; margin-bottom: 1rem; opacity: 0.5;"></i>
-        <p>${isSearch ? 'No se han encontrado actividades que coincidan con tu búsqueda.' : 'Todavía no hay actividades publicadas en esta categoría. ¡Sé el primero en publicar una!'}</p>
-        ${!isSearch ? '<button class="btn-primary" onclick="openServiceModal()" style="margin-top: 1.5rem;">Publicar Servicio</button>' : ''}
+        <p>${isSearch ? 'No se han encontrado actividades que coincidan con tu búsqueda.' : 'Todavía no hay actividades publicadas en esta categoría.'}</p>
       </div>
     `;
   } else {
@@ -341,7 +340,7 @@ initMarketplace();
 const serviceModal = document.getElementById('service-modal');
 const serviceClose = document.getElementById('service-close');
 const addServiceTrigger = document.getElementById('add-service-trigger');
-const addServiceTriggerHero = document.getElementById('add-service-trigger-hero');
+const addServiceTriggerFab = document.getElementById('add-service-trigger-fab');
 
 function openServiceModal() { 
   if (serviceModal) {
@@ -357,7 +356,7 @@ function closeServiceModal() {
 }
 
 if (addServiceTrigger) addServiceTrigger.addEventListener('click', openServiceModal);
-if (addServiceTriggerHero) addServiceTriggerHero.addEventListener('click', openServiceModal);
+if (addServiceTriggerFab) addServiceTriggerFab.addEventListener('click', openServiceModal);
 if (serviceClose) serviceClose.addEventListener('click', closeServiceModal);
 if (serviceModal) {
   serviceModal.addEventListener('click', (e) => { if (e.target === serviceModal) closeServiceModal(); });

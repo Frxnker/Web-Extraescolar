@@ -92,7 +92,6 @@
         
         <div style="display:flex; gap:15px; justify-content:center; margin-bottom: 2rem;">
           <a href="pages/actividades.html" class="btn-primary" style="padding: 15px 30px; font-size: 1.1rem;">Ver Todas las Actividades</a>
-          <button id="add-service-trigger-hero" class="btn-secondary" style="padding: 15px 30px; font-size: 1.1rem;">Publicar Servicio</button>
         </div>
         
         <!-- Search & Filter Bar -->
@@ -335,51 +334,6 @@
     </footer>
 
     <!-- ═══════════ FLOATING ELEMENTS ═══════════ -->
-    <!-- Add Service Modal -->
-    <div class="modal-overlay" id="service-modal">
-      <div class="modal-card">
-        <button class="modal-close" id="service-close"><i data-lucide="x"></i></button>
-        <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem; text-align: center;">Publicar Nuevo Servicio</h2>
-        <p style="color: var(--text-light); text-align: center; margin-bottom: 1.5rem;">Completa los detalles de tu actividad</p>
-
-        <form id="service-form">
-          <input type="text" id="srv-name" placeholder="Título del servicio" required style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid var(--border);">
-          <textarea id="srv-desc" placeholder="Descripción detallada" required style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid var(--border); min-height: 80px; font-family:inherit;"></textarea>
-          
-          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-bottom: 10px;">
-            <select id="srv-cat" style="padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--background); color: var(--text);">
-              <option value="deportes">Deportes</option>
-              <option value="idiomas">Idiomas</option>
-              <option value="tecnologia">Tecnología</option>
-              <option value="arte">Arte</option>
-              <option value="cocina">Cocina</option>
-              <option value="ciencia">Ciencia</option>
-              <option value="refuerzo">Refuerzo Escolar</option>
-              <option value="baile">Baile y Danza</option>
-              <option value="ajedrez">Ajedrez</option>
-              <option value="otro">Otro (Sugerir nueva...)</option>
-            </select>
-            <input type="number" id="srv-price" placeholder="Precio (€/mes)" required style="padding: 10px; border-radius: 8px; border: 1px solid var(--border);">
-          </div>
-          
-          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-bottom: 10px;">
-            <input type="email" id="srv-email" placeholder="Email de contacto" required style="padding: 10px; border-radius: 8px; border: 1px solid var(--border);">
-            <input type="tel" id="srv-phone" placeholder="Teléfono" required style="padding: 10px; border-radius: 8px; border: 1px solid var(--border);">
-          </div>
-          
-          <div id="suggestion-container" style="display:none; margin-bottom: 15px; padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px; border-left: 4px solid var(--primary);">
-            <p style="font-size: 0.85rem; margin-bottom: 8px;">¿No encuentras tu categoría? Cuéntanos cuál buscas:</p>
-            <input type="text" id="srv-suggestion" placeholder="Ej. Yoga, Fotografía..." style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid var(--border);">
-          </div>
-          
-          <input type="text" id="srv-location" placeholder="Ubicación (Ciudad o Barrio)" required style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid var(--border);">
-          <div style="margin-bottom: 15px;">
-            <label for="srv-img" style="display: block; font-size: 0.85rem; color: var(--text-light); margin-bottom: 5px;">Imagen de la actividad</label>
-            <input type="file" id="srv-img" accept="image/*" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--background); color: var(--text);">
-          </div>
-          
-          <button type="submit" class="btn-primary" style="width: 100%;">Publicar Ahora</button>
-        </form>
       </div>
     </div>
 
@@ -403,6 +357,59 @@
       <div id="details-content" class="details-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
         <!-- Content will be injected here -->
       </div>
+    </div>
+  </div>
+
+  <!-- FLOATING ACTION BUTTON -->
+  <button id="add-service-trigger-fab" class="fab" title="Publicar Servicio">
+    <i data-lucide="plus"></i>
+  </button>
+
+  <!-- ADD SERVICE MODAL -->
+  <div class="modal" id="service-modal">
+    <div class="modal-content">
+      <button class="modal-close" id="service-close"><i data-lucide="x"></i></button>
+      <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem; text-align: center;">Publicar Nuevo Servicio</h2>
+      <p style="color: var(--text-light); text-align: center; margin-bottom: 1.5rem;">Comparte tu actividad con la comunidad</p>
+
+      <form id="service-form">
+        <input type="text" id="srv-name" placeholder="Título del servicio" required style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid var(--border);">
+        <textarea id="srv-desc" placeholder="Descripción detallada" required style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid var(--border); min-height: 80px; font-family:inherit;"></textarea>
+        
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-bottom: 10px;">
+          <select id="srv-cat" style="padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--background); color: var(--text);">
+            <option value="deportes">Deportes</option>
+            <option value="idiomas">Idiomas</option>
+            <option value="tecnologia">Tecnología</option>
+            <option value="arte">Arte</option>
+            <option value="cocina">Cocina</option>
+            <option value="ciencia">Ciencia</option>
+            <option value="refuerzo">Refuerzo Escolar</option>
+            <option value="baile">Baile y Danza</option>
+            <option value="ajedrez">Ajedrez</option>
+            <option value="otro">Otro (Sugerir nueva...)</option>
+          </select>
+          <input type="number" id="srv-price" placeholder="Precio (€/mes)" required style="padding: 10px; border-radius: 8px; border: 1px solid var(--border);">
+        </div>
+        
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-bottom: 10px;">
+          <input type="email" id="srv-email" placeholder="Email de contacto" required style="padding: 10px; border-radius: 8px; border: 1px solid var(--border);">
+          <input type="tel" id="srv-phone" placeholder="Teléfono" required style="padding: 10px; border-radius: 8px; border: 1px solid var(--border);">
+        </div>
+        
+        <div id="suggestion-container" style="display:none; margin-bottom: 15px; padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px; border-left: 4px solid var(--primary);">
+          <p style="font-size: 0.85rem; margin-bottom: 8px;">¿No encuentras tu categoría? Cuéntanos cuál buscas:</p>
+          <input type="text" id="srv-suggestion" placeholder="Ej. Yoga, Fotografía..." style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid var(--border);">
+        </div>
+        
+        <input type="text" id="srv-location" placeholder="Ubicación (Ciudad o Barrio)" required style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid var(--border);">
+        <div style="margin-bottom: 15px;">
+          <label for="srv-img" style="display: block; font-size: 0.85rem; color: var(--text-light); margin-bottom: 5px;">Imagen de la actividad</label>
+          <input type="file" id="srv-img" accept="image/*" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--background); color: var(--text);">
+        </div>
+        
+        <button type="submit" class="btn-primary" style="width: 100%;">Publicar Ahora</button>
+      </form>
     </div>
   </div>
 
