@@ -104,6 +104,55 @@ if (authModal) {
   authModal.addEventListener('click', (e) => {
     if (e.target === authModal) closeModal();
   });
+
+  // Auth Tab Switching Logic (Login / Register)
+  const tabLog = document.getElementById('tab-login');
+  const tabReg = document.getElementById('tab-register');
+  const authMode = document.getElementById('auth-mode');
+  const regFields = document.getElementById('register-fields');
+  const submitBtn = document.getElementById('auth-submit-btn');
+
+  function setAuthMode(mode) {
+    authMode.value = mode;
+    if (mode === 'login') {
+      tabLog.style.color = 'var(--primary)';
+      tabLog.style.borderBottom = '2px solid var(--primary)';
+      tabReg.style.color = 'var(--text-light)';
+      tabReg.style.borderBottom = '2px solid transparent';
+      regFields.style.display = 'none';
+      submitBtn.textContent = 'Entrar';
+    } else {
+      tabReg.style.color = 'var(--primary)';
+      tabReg.style.borderBottom = '2px solid var(--primary)';
+      tabLog.style.color = 'var(--text-light)';
+      tabLog.style.borderBottom = '2px solid transparent';
+      regFields.style.display = 'block';
+      submitBtn.textContent = 'Crear Cuenta';
+    }
+  }
+
+  if (tabLog) tabLog.addEventListener('click', () => setAuthMode('login'));
+  if (tabReg) tabReg.addEventListener('click', () => setAuthMode('register'));
+
+  // Form Submission Logic
+  const authForm = document.getElementById('auth-form');
+  if (authForm) {
+    authForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const originalText = submitBtn.textContent;
+      
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Procesando...';
+
+      setTimeout(() => {
+        const action = authMode.value === 'login' ? 'iniciado sesión' : 'creado tu cuenta';
+        alert(`¡Éxito! Has ${action} correctamente.`);
+        closeModal();
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+      }, 1500);
+    });
+  }
 }
 
 
