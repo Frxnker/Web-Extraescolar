@@ -1,39 +1,65 @@
-# 🚀 Extraescolar.com | Plataforma Premium 2026
+# 🚀 Extraescolar.com - Marketplace Educativo 2026
 
-Bienvenido a la plataforma líder en gestión y descubrimiento de actividades extraescolares, optimizada bajo los estándares más exigentes de rendimiento, SEO y experiencia de usuario del 2026.
+Plataforma premium diseñada para conectar a profesionales de la educación y el deporte con familias. Un marketplace dinámico, rápido y elegante para gestionar actividades extraescolares.
+
+![Thumbnail](https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=1200)
 
 ## ✨ Características Principales
 
-- **Diseño Móvil-Primero (Mobile-First)**: Interfaz fluida y adaptativa con estética premium (*Glassmorphism*).
-- **Geolocalización Inteligente**: El mapa interactivo detecta automáticamente tu ubicación para mostrarte los centros más cercanos.
-- **Arquitectura de Alto Rendimiento**:
-  - Uso de **Lucide Icons** para iconos vectoriales ligeros.
-  - Tipografía fluida con `clamp()` de CSS.
-  - Sistema de temas (Modo Oscuro predeterminado).
-- **SEO & CRO Optimizado**:
-  - Datos estructurados **JSON-LD (Schema.org)** para visibilidad en buscadores.
-  - Etiquetas Meta avanzadas para mejor indexación.
-  - Flujos de conversión claros (Lead Magnets, CTAs dinámicos).
+### 👤 Gestión de Usuarios y Perfiles
+- **Autenticación Real**: Sistema de registro e inicio de sesión mediante **Firebase Auth**.
+- **Perfil Personalizable**: Los usuarios pueden editar su biografía y gestionar su información pública.
+- **Gestor de Servicios**: Interfaz para que los profesionales publiquen, editen y eliminen sus propios anuncios.
 
-## 🛠️ Tecnologías
+### 🌟 Comunidad y Valoraciones
+- **Estadísticas en Tiempo Real**: Los contadores de la Home (Actividades, Usuarios, Valoración) se calculan dinámicamente desde Firestore.
+- **Comentarios con Estrellas**: Sistema de reseñas real donde los usuarios pueden calificar servicios del 1 al 5.
+- **Moderación de Propios**: Los usuarios tienen control total para eliminar sus propios comentarios.
 
-- **Frontend**: HTML5 Semántico, CSS3 Vanilla (Custom Properties), JavaScript ES6+.
+### 💖 Sistema de Favoritos
+- **Cloud Favorites**: Lista de deseos guardada en Firestore, persistente entre dispositivos.
+- **Acceso Rápido**: Sección dedicada en el perfil para acceder a las actividades guardadas.
+
+### 🎨 Interfaz de Usuario (UI/UX)
+- **Tema Inteligente**: Detección automática del modo del sistema (Light/Dark) con opción de forzado manual en ajustes.
+- **Navegación Móvil**: Menú lateral dinámico y optimizado para smartphones.
+- **Notificaciones Premium**: Sistema propio de *Toasts* y *Modales de Confirmación* que reemplazan a los avisos genéricos del navegador.
+
+## 🛠️ Tecnologías Utilizadas
+
+- **Frontend**: HTML5 Semántico, CSS3 (Variables, Grid, Flexbox), JavaScript Moderno (ES6+).
+- **Backend/Base de Datos**: 
+    - **Firebase Firestore**: Base de datos NoSQL en tiempo real.
+    - **Firebase Authentication**: Seguridad y gestión de sesiones.
 - **Iconografía**: [Lucide Icons](https://lucide.dev/).
-- **Fuentes**: Google Fonts (Inter & Outfit).
-- **Control de Versiones**: Git (Flujo de ramas optimizado).
+- **Efectos**: AOS-like scroll reveals y transiciones personalizadas.
 
 ## 📂 Estructura del Proyecto
 
-- `/css/styles.css`: Hoja de estilos unificada y optimizada.
-- `/js/main.js`: Lógica de la aplicación (Menús, Temas, Geolocalización).
-- `/img/`: Activos visuales optimizados.
-- `/pages/`: Documentación legal y corporativa.
+```text
+├── Index.html          # Página principal y buscador
+├── css/
+│   └── styles.css      # Sistema de diseño y variables de tema
+├── js/
+│   ├── main.js         # Lógica central (Auth, Stats, UI)
+│   ├── firebase-config.js # Configuración y exportación de Firebase
+│   └── data.js         # Datos semilla y fallback
+├── pages/
+│   ├── actividades.html # Explorador completo de servicios
+│   └── perfil.html      # Panel de gestión de usuario
+└── img/                # Recursos visuales
+```
 
 ## 🚀 Instalación y Uso
 
-1. Clona el repositorio.
-2. Abre `Index.html` en cualquier navegador moderno.
-3. ¡Disfruta de la experiencia premium!
+1. **Clonar el repositorio**:
+   ```bash
+   git clone https://github.com/TuUsuario/Web-Extraescolar.git
+   ```
+2. **Configurar Firebase**:
+   Asegúrate de tener un proyecto en Firebase y actualiza las credenciales en `js/firebase-config.js`.
+3. **Ejecutar**:
+   Abre `Index.html` directamente en tu navegador o usa un servidor local como *Live Server*.
 
 ---
-© 2026 Extraescolar.com - Elevando el estándar educativo.
+Desarrollado con ❤️ para mejorar la educación extraescolar.
