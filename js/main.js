@@ -199,3 +199,90 @@ function initGeolocation() {
 
 // Start detection
 initGeolocation();
+
+// ── MARKETPLACE: ADD SERVICE MODAL ──
+const serviceModal = document.getElementById('service-modal');
+const serviceClose = document.getElementById('service-close');
+const addServiceTrigger = document.getElementById('add-service-trigger');
+
+function openServiceModal() { serviceModal.classList.add('active'); }
+function closeServiceModal() { serviceModal.classList.remove('active'); }
+
+if (addServiceTrigger) addServiceTrigger.addEventListener('click', openServiceModal);
+if (serviceClose) serviceClose.addEventListener('click', closeServiceModal);
+
+if (serviceModal) {
+  serviceModal.addEventListener('click', (e) => {
+    if (e.target === serviceModal) closeServiceModal();
+  });
+}
+
+// Service Posting Simulation
+const serviceForm = document.getElementById('service-form');
+if (serviceForm) {
+  serviceForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('srv-name').value;
+    alert(`¡Genial! Tu servicio "${name}" ha sido publicado correctamente y pronto aparecerá en los resultados.`);
+    closeServiceModal();
+    serviceForm.reset();
+  });
+}
+
+// ── MARKETPLACE: SEARCH & FILTER ──
+const searchInput = document.getElementById('service-search');
+const categoryFilter = document.getElementById('filter-category');
+const btnSearch = document.getElementById('btn-search');
+
+function performFilter() {
+  const query = (searchInput ? searchInput.value : '').toLowerCase();
+  const cat = (categoryFilter ? categoryFilter.value : 'all').toLowerCase();
+  const cards = document.querySelectorAll('.act-card');
+  let foundCount = 0;
+
+  cards.forEach(card => {
+    const title = card.querySelector('h3').textContent.toLowerCase();
+    const text = card.querySelector('p').textContent.toLowerCase();
+    const tag = card.querySelector('.act-tag') ? card.querySelector('.act-tag').textContent.toLowerCase() : '';
+    
+    const matchesQuery = !query || title.includes(query) || text.includes(query);
+    const matchesCat = cat === 'all' || tag.includes(cat) || title.includes(cat);
+
+    if (matchesQuery && matchesCat) {
+      card.style.display = 'block';
+      foundCount++;
+    } else {
+      card.style.display = 'none';
+    }
+  });
+
+  // Handle No Results
+  let noResults = document.getElementById('no-results-msg');
+  if (!noResults) {
+    noResults = document.createElement('p');
+    noResults.id = 'no-results-msg';
+    noResults.style.textAlign = 'center';
+    noResults.style.padding = '40px';
+    noResults.style.gridColumn = '1 / -1';
+    noResults.style.color = 'var(--text-light)';
+    noResults.textContent = 'No se han encontrado servicios que coincidan con tu búsqueda. ¡Prueba con otros términos!';
+    const grid = document.querySelector('.act-grid');
+    if (grid) grid.appendChild(noResults);
+  }
+  
+  noResults.style.display = foundCount === 0 ? 'block' : 'none';
+
+  // Scroll to activities to show results
+  const activitiesSection = document.getElementById('actividades');
+  if (activitiesSection && (query || cat !== 'all')) {
+    activitiesSection.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
+if (btnSearch) btnSearch.addEventListener('click', performFilter);
+if (searchInput) {
+  searchInput.addEventListener('keyup', (e) => {
+    if (e.key === 'Enter') performFilter();
+  });
+}
+if (categoryFilter) categoryFilter.addEventListener('change', performFilter);

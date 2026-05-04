@@ -73,10 +73,8 @@
       <button id="theme-toggle" title="Cambiar tema">
         <i data-lucide="moon"></i>
       </button>
-      <button id="auth-trigger" class="btn-secondary">
-        <i data-lucide="user"></i> Acceder
-      </button>
-      <a href="#contacto" class="btn-primary">Contacto</a>
+      <a href="#buscar" class="btn-secondary">Buscar</a>
+      <button id="add-service-trigger" class="btn-primary">Publicar Servicio</button>
       <button class="menu-toggle" id="menu-toggle">
         <i data-lucide="menu"></i>
       </button>
@@ -88,18 +86,30 @@
     <section id="hero">
       <div class="hero-bg"></div>
       <div class="hero-content reveal">
-        <div class="hero-badge">
-          <i data-lucide="sparkles" style="width:14px;"></i> Nº1 Educación Extraescolar
+        <div class="hero-badge">Plataforma Marketplace 2026</div>
+        <h1>Encuentra o publica los mejores <em>Servicios</em></h1>
+        <p class="hero-sub">Conectamos a profesionales educativos con familias que buscan calidad. La red más grande de servicios extraescolares a tu alcance.</p>
+        
+        <!-- Search & Filter Bar -->
+        <div id="buscar" class="search-container reveal">
+          <div class="search-bar">
+            <div class="search-input">
+              <i data-lucide="search"></i>
+              <input type="text" id="service-search" placeholder="¿Qué actividad buscas? (e.g. Robótica, Tenis...)">
+            </div>
+            <div class="filter-group">
+              <select id="filter-category">
+                <option value="all">Todas las categorías</option>
+                <option value="deportes">Deportes</option>
+                <option value="idiomas">Idiomas</option>
+                <option value="tecnologia">Tecnología</option>
+                <option value="arte">Arte y Música</option>
+              </select>
+              <button class="btn-primary" id="btn-search">Buscar</button>
+            </div>
+          </div>
         </div>
-        <h1>Transforma el <em>Futuro</em> de tus hijos</h1>
-        <p class="hero-sub">Conectamos a familias con los mejores centros de formación, idiomas, deportes y artes en una
-          plataforma integral.</p>
-
-        <div style="display:flex; gap:15px; justify-content:center; flex-wrap:wrap;">
-          <a href="#actividades" class="btn-primary">Explorar Actividades</a>
-          <a href="#proceso" class="btn-secondary">Cómo funciona</a>
-        </div>
-
+        
         <!-- Trust Badges -->
         <div class="hero-visual">
           <div class="hero-float-chip top reveal-delay-1">
@@ -298,12 +308,19 @@
           </div>
         </div>
         <div>
-          <h4 style="margin-bottom: 1.5rem;">Navegación</h4>
+          <h4>Explorar</h4>
           <ul class="footer-links">
-            <li><a href="#hero">Inicio</a></li>
-            <li><a href="#actividades">Actividades</a></li>
-            <li><a href="#proceso">Cómo Funciona</a></li>
-            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#actividades">Servicios Populares</a></li>
+            <li><a href="#buscar">Nuevas Ofertas</a></li>
+            <li><a href="#faq">Ayuda al Usuario</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Comunidad</h4>
+          <ul class="footer-links">
+            <li><a href="#">Ser Proveedor</a></li>
+            <li><a href="#">Blog Educativo</a></li>
+            <li><a href="#">Privacidad</a></li>
           </ul>
         </div>
         <div>
@@ -314,17 +331,6 @@
             <li><a href="pages/legal.html">Cookies</a></li>
           </ul>
         </div>
-        <div>
-          <h4 style="margin-bottom: 1.5rem;">Contacto</h4>
-          <ul class="footer-links">
-            <li><i data-lucide="map-pin" style="width:14px; display:inline; vertical-align:middle;"></i> Centro de Málaga
-            </li>
-            <li><i data-lucide="phone" style="width:14px; display:inline; vertical-align:middle;"></i> +34 951 234 567
-            </li>
-            <li><i data-lucide="mail" style="width:14px; display:inline; vertical-align:middle;"></i>
-              hola@web-extraescolar.es</li>
-          </ul>
-        </div>
       </div>
       <div class="footer-bottom">
         © 2026 Web-Extraescolar. Todos los derechos reservados.
@@ -332,11 +338,32 @@
     </footer>
 
     <!-- ═══════════ FLOATING ELEMENTS ═══════════ -->
-    <!-- WhatsApp Button -->
-    <div class="whatsapp-float">
-      <a href="https://wa.me/34600000000" class="whatsapp-btn" aria-label="WhatsApp">
-        <i data-lucide="message-circle" style="width: 32px; height: 32px;"></i>
-      </a>
+    <!-- Add Service Modal -->
+    <div class="modal-overlay" id="service-modal">
+      <div class="modal-card">
+        <button class="modal-close" id="service-close"><i data-lucide="x"></i></button>
+        <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem; text-align: center;">Publicar Nuevo Servicio</h2>
+        <p style="color: var(--text-light); text-align: center; margin-bottom: 1.5rem;">Completa los detalles de tu actividad</p>
+
+        <form id="service-form">
+          <input type="text" id="srv-name" placeholder="Título del servicio" required style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid var(--border);">
+          <textarea id="srv-desc" placeholder="Descripción detallada" required style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid var(--border); min-height: 80px; font-family:inherit;"></textarea>
+          
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-bottom: 10px;">
+            <select id="srv-cat" style="padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--background); color: var(--text);">
+              <option value="deportes">Deportes</option>
+              <option value="idiomas">Idiomas</option>
+              <option value="tecnologia">Tecnología</option>
+              <option value="arte">Arte</option>
+            </select>
+            <input type="number" id="srv-price" placeholder="Precio (€/mes)" required style="padding: 10px; border-radius: 8px; border: 1px solid var(--border);">
+          </div>
+          
+          <input type="text" id="srv-location" placeholder="Ubicación (Ciudad o Barrio)" required style="width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 8px; border: 1px solid var(--border);">
+          
+          <button type="submit" class="btn-primary" style="width: 100%;">Publicar Ahora</button>
+        </form>
+      </div>
     </div>
 
     <!-- Cookie Banner -->
