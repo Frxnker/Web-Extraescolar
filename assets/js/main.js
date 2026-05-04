@@ -1,5 +1,4 @@
-// ── INITIALIZE ICONS ──
-import { db, collection, addDoc, getDocs, query, orderBy, deleteDoc, doc, where, auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from './modules/firebase.js';
+import { db, collection, addDoc, getDocs, query, orderBy, deleteDoc, doc, where, auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile, updateDoc, setDoc } from './modules/firebase.js';
 lucide.createIcons();
 
 let currentUser = null;
@@ -68,10 +67,14 @@ onAuthStateChanged(auth, (user) => {
   if (userActions) {
     if (user) {
       const initial = user.email.charAt(0).toUpperCase();
+      const photo = localStorage.getItem(`photo_${user.uid}`) || user.photoURL;
+      
       userActions.innerHTML = `
         <button id="add-service-trigger" class="btn-primary">Publicar Servicio</button>
         <div class="profile-container">
-          <div class="profile-circle" id="profile-trigger">${initial}</div>
+          <div class="profile-circle" id="profile-trigger">
+            ${photo ? `<img src="${photo}" style="width:100%; height:100%; border-radius:50%; object-fit:cover;">` : initial}
+          </div>
           <div class="profile-dropdown" id="profile-dropdown">
             <div class="dropdown-header">${user.email}</div>
             <button class="dropdown-item"><i data-lucide="user" style="width:16px;"></i> Mi Perfil</button>
@@ -237,8 +240,13 @@ async function loadComments() {
       
       const commentDiv = document.createElement('div');
       commentDiv.style.cssText = 'background:var(--surface); padding:1.5rem; border-radius:18px; border:1px solid var(--border); display:flex; gap:15px; margin-bottom:1rem; position:relative;';
+      
+      const authorPhoto = data.authorPhoto;
+      
       commentDiv.innerHTML = `
-        <div style="width:40px; height:40px; border-radius:50%; background:var(--primary); color:white; display:flex; align-items:center; justify-content:center; font-weight:700; flex-shrink:0;">${initial}</div>
+        <div style="width:40px; height:40px; border-radius:50%; background:var(--primary); color:white; display:flex; align-items:center; justify-content:center; font-weight:700; flex-shrink:0; overflow:hidden;">
+          ${authorPhoto ? `<img src="${authorPhoto}" style="width:100%; height:100%; object-fit:cover;">` : initial}
+        </div>
         <div style="flex:1;">
           <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
             <strong style="font-size:0.9rem;">${data.authorEmail.split('@')[0]} <span style="color:#f59e0b; margin-left:8px;">${stars}</span></strong>
@@ -285,12 +293,15 @@ function initCommentForm() {
     const text = document.getElementById('comment-text').value;
     const rating = document.getElementById('comment-rating').value;
     
+    const userPhoto = localStorage.getItem(`photo_${currentUser.uid}`) || currentUser.photoURL;
+
     try {
       await addDoc(collection(db, "comentarios"), {
         text: text,
         rating: rating,
         authorUid: currentUser.uid,
         authorEmail: currentUser.email,
+        authorPhoto: userPhoto || null,
         timestamp: new Date()
       });
       document.getElementById('comment-text').value = '';
@@ -302,19 +313,101 @@ function initCommentForm() {
   });
 }
 
-function populateProfilePage(user) {
+async function populateProfilePage(user) {
   const emailDisplay = document.getElementById('display-email');
   const initialDisplay = document.getElementById('avatar-initial');
   const nameDisplay = document.getElementById('display-name');
   const emailField = document.getElementById('profile-email');
   const logoutFull = document.getElementById('btn-logout-full');
   const addNewBtn = document.getElementById('add-new-btn');
+  const imgDisplay = document.getElementById('profile-img-display');
+  const fileInput = document.getElementById('profile-file-input');
+  const avatarBtn = document.getElementById('profile-avatar-btn');
 
   if (emailDisplay) emailDisplay.textContent = user.email;
   if (emailField) emailField.textContent = user.email;
-  if (initialDisplay) initialDisplay.textContent = user.email.charAt(0).toUpperCase();
   if (nameDisplay) nameDisplay.textContent = user.displayName || user.email.split('@')[0];
   
+  // Mostrar foto o inicial
+  try {
+    const localPhoto = localStorage.getItem(`photo_${user.uid}`);
+    let firestorePhoto = null;
+    let docId = null;
+
+    // Solo consultamos Firestore si no tenemos foto local (para ahorrar lectura)
+    if (!localPhoto) {
+      const q = query(collection(db, "usuarios"), where("uid", "==", user.uid));
+      const userSnap = await getDocs(q);
+      if (!userSnap.empty) {
+        firestorePhoto = userSnap.docs[0].data().photoURL;
+        docId = userSnap.docs[0].id;
+      }
+    }
+
+    const photoToUse = localPhoto || firestorePhoto || user.photoURL;
+
+    if (photoToUse && imgDisplay && initialDisplay) {
+      imgDisplay.src = photoToUse;
+      imgDisplay.style.display = 'block';
+      initialDisplay.style.display = 'none';
+    } else if (initialDisplay) {
+      initialDisplay.textContent = user.email.charAt(0).toUpperCase();
+      if (imgDisplay) imgDisplay.style.display = 'none';
+      initialDisplay.style.display = 'flex';
+    }
+    
+    // Lógica de subir foto
+    if (avatarBtn && fileInput) {
+      avatarBtn.onclick = () => fileInput.click();
+      fileInput.onchange = async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        if (file.size > 1048576) {
+          showToast("La imagen es demasiado grande (máx 1MB)", "error");
+          return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = async (event) => {
+          const base64 = event.target.result;
+          try {
+            showToast("Actualizando perfil...", "info");
+            
+            // 1. Guardar en Firestore si tenemos el ID del documento
+            if (!docId) {
+               const q = query(collection(db, "usuarios"), where("uid", "==", user.uid));
+               const userSnap = await getDocs(q);
+               if (!userSnap.empty) docId = userSnap.docs[0].id;
+            }
+
+            if (docId) {
+              await updateDoc(doc(db, "usuarios", docId), { photoURL: base64 });
+            } else {
+              // Si por algún motivo no hay doc, lo creamos
+              await addDoc(collection(db, "usuarios"), { uid: user.uid, email: user.email, photoURL: base64 });
+            }
+
+            // 2. Guardar en LocalStorage para carga instantánea
+            localStorage.setItem(`photo_${user.uid}`, base64);
+            
+            showToast("¡Foto de perfil actualizada!", "success");
+            
+            if (imgDisplay && initialDisplay) {
+              imgDisplay.src = base64;
+              imgDisplay.style.display = 'block';
+              initialDisplay.style.display = 'none';
+            }
+          } catch (err) {
+            console.error(err);
+            showToast("Error al guardar la foto", "error");
+          }
+        };
+        reader.readAsDataURL(file);
+      };
+    }
+  } catch (e) { console.error("Error profile photo:", e); }
+
   if (logoutFull) logoutFull.addEventListener('click', () => signOut(auth));
   if (addNewBtn) addNewBtn.addEventListener('click', openServiceModal);
 
