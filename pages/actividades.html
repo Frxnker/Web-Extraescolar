@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todas las Actividades | Extraescolar.com</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body { padding-top: 80px; }
+    .search-container { margin-bottom: 4rem; }
+    .act-grid { min-height: 400px; }
+  </style>
+</head>
+
+<body class="dark-mode">
+  <header>
+    <a href="../Index.html" class="brand">
+      <i data-lucide="graduation-cap"></i> Web-<span>Extraescolar</span>
+    </a>
+    <nav class="nav-links">
+      <a href="../Index.html">Inicio</a>
+      <a href="#actividades">Actividades</a>
+      <a href="../Index.html#proceso">Cómo Funciona</a>
+    </nav>
+    <div class="nav-actions">
+      <button id="theme-toggle" title="Cambiar tema"><i data-lucide="moon"></i></button>
+      <button id="add-service-trigger" class="btn-primary">Publicar Servicio</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="actividades">
+      <div class="reveal visible">
+        <div class="section-label">Marketplace</div>
+        <h1>Descubre todas las <em>Actividades</em></h1>
+        <p class="section-intro">Utiliza los filtros para encontrar la actividad perfecta para ti.</p>
+      </div>
+
+      <!-- Search & Filter Bar -->
+      <div class="search-container reveal visible" style="max-width: 1000px;">
+        <div class="search-bar">
+          <div class="search-input">
+            <i data-lucide="search"></i>
+            <input type="text" id="service-search" placeholder="¿Qué actividad buscas?">
+          </div>
+          <div class="filter-group">
+            <select id="filter-category">
+              <option value="all">Todas las categorías</option>
+              <option value="deportes">Deportes</option>
+              <option value="idiomas">Idiomas</option>
+              <option value="tecnologia">Tecnología</option>
+              <option value="arte">Arte y Música</option>
+              <option value="cocina">Cocina</option>
+              <option value="ciencia">Ciencia</option>
+              <option value="refuerzo">Refuerzo Escolar</option>
+              <option value="baile">Baile y Danza</option>
+              <option value="ajedrez">Ajedrez</option>
+            </select>
+            <button class="btn-primary" id="btn-search">Filtrar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Categories -->
+      <div class="cat-quick-grid reveal visible">
+        <div class="cat-chip" data-cat="deportes"><i data-lucide="trophy"></i><span>Deportes</span></div>
+        <div class="cat-chip" data-cat="idiomas"><i data-lucide="languages"></i><span>Idiomas</span></div>
+        <div class="cat-chip" data-cat="tecnologia"><i data-lucide="cpu"></i><span>Tecnología</span></div>
+        <div class="cat-chip" data-cat="arte"><i data-lucide="palette"></i><span>Arte</span></div>
+        <div class="cat-chip" data-cat="cocina"><i data-lucide="utensils"></i><span>Cocina</span></div>
+        <div class="cat-chip" data-cat="ciencia"><i data-lucide="flask-conical"></i><span>Ciencia</span></div>
+        <div class="cat-chip" data-cat="refuerzo"><i data-lucide="book-open"></i><span>Refuerzo</span></div>
+        <div class="cat-chip" data-cat="baile"><i data-lucide="music"></i><span>Baile</span></div>
+        <div class="cat-chip" data-cat="ajedrez"><i data-lucide="grid"></i><span>Ajedrez</span></div>
+      </div>
+
+      <div class="act-grid" id="activities-container">
+        <!-- Dynamic content -->
+      </div>
+    </section>
+  </main>
+
+  <footer id="contacto">
+    <div class="footer-bottom">
+      © 2026 Web-Extraescolar. Todos los derechos reservados.
+    </div>
+  </footer>
+
+  <!-- Add Service Modal -->
+  <div class="modal-overlay" id="service-modal">
+    <div class="modal-card">
+      <button class="modal-close" id="service-close"><i data-lucide="x"></i></button>
+      <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem; text-align: center;">Publicar Nuevo Servicio</h2>
+      <form id="service-form">
+        <input type="text" id="srv-name" placeholder="Título" required style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid var(--border);">
+        <textarea id="srv-desc" placeholder="Descripción" required style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid var(--border); min-height: 80px;"></textarea>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-bottom: 10px;">
+          <select id="srv-cat" style="padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--background); color: var(--text);">
+            <option value="deportes">Deportes</option>
+            <option value="idiomas">Idiomas</option>
+            <option value="tecnologia">Tecnología</option>
+            <option value="arte">Arte</option>
+            <option value="cocina">Cocina</option>
+            <option value="ciencia">Ciencia</option>
+            <option value="refuerzo">Refuerzo Escolar</option>
+            <option value="baile">Baile y Danza</option>
+            <option value="ajedrez">Ajedrez</option>
+            <option value="otro">Otro (Sugerir nueva...)</option>
+          </select>
+          <input type="number" id="srv-price" placeholder="Precio (€)" required style="padding: 10px; border-radius: 8px; border: 1px solid var(--border);">
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-bottom: 10px;">
+          <input type="email" id="srv-email" placeholder="Email de contacto" required style="padding: 10px; border-radius: 8px; border: 1px solid var(--border);">
+          <input type="tel" id="srv-phone" placeholder="Teléfono" required style="padding: 10px; border-radius: 8px; border: 1px solid var(--border);">
+        </div>
+
+        <div id="suggestion-container" style="display:none; margin-bottom: 15px; padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px; border-left: 4px solid var(--primary);">
+          <p style="font-size: 0.85rem; margin-bottom: 8px;">¿No encuentras tu categoría? Cuéntanos cuál buscas:</p>
+          <input type="text" id="srv-suggestion" placeholder="Ej. Yoga, Fotografía..." style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid var(--border);">
+        </div>
+        <input type="text" id="srv-location" placeholder="Ubicación" required style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid var(--border);">
+        <div style="margin-bottom: 15px;">
+          <label for="srv-img" style="display: block; font-size: 0.85rem; color: var(--text-light); margin-bottom: 5px;">Imagen de la actividad</label>
+          <input type="file" id="srv-img" accept="image/*" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--background); color: var(--text);">
+        </div>
+        <button type="submit" class="btn-primary" style="width: 100%;">Publicar Ahora</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/main.js" defer></script>
+</body>
+</html>

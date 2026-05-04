@@ -340,6 +340,58 @@ nav.nav-links a:hover {
   }
 }
 
+/* ── QUICK CATEGORIES ── */
+.cat-quick-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.cat-chip {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 10px 20px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--text-light);
+  font-weight: 500;
+  box-shadow: var(--shadow);
+}
+
+.cat-chip i {
+  width: 18px;
+  height: 18px;
+  color: var(--primary);
+}
+
+.cat-chip:hover {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.cat-chip:hover i {
+  color: white;
+}
+
+.cat-chip.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.cat-chip.active i {
+  color: white;
+}
+
 /* ── HERO ── */
 #hero {
   min-height: 100vh;

@@ -90,6 +90,11 @@
         <h1>Encuentra o publica los mejores <em>Servicios</em></h1>
         <p class="hero-sub">Conectamos a profesionales educativos con familias que buscan calidad. La red más grande de servicios extraescolares a tu alcance.</p>
         
+        <div style="display:flex; gap:15px; justify-content:center; margin-bottom: 2rem;">
+          <a href="pages/actividades.html" class="btn-primary" style="padding: 15px 30px; font-size: 1.1rem;">Ver Todas las Actividades</a>
+          <button id="add-service-trigger-hero" class="btn-secondary" style="padding: 15px 30px; font-size: 1.1rem;">Publicar Servicio</button>
+        </div>
+        
         <!-- Search & Filter Bar -->
         <div id="buscar" class="search-container reveal">
           <div class="search-bar">
@@ -104,6 +109,11 @@
                 <option value="idiomas">Idiomas</option>
                 <option value="tecnologia">Tecnología</option>
                 <option value="arte">Arte y Música</option>
+                <option value="cocina">Cocina</option>
+                <option value="ciencia">Ciencia</option>
+                <option value="refuerzo">Refuerzo Escolar</option>
+                <option value="baile">Baile y Danza</option>
+                <option value="ajedrez">Ajedrez</option>
               </select>
               <button class="btn-primary" id="btn-search">Buscar</button>
             </div>
@@ -175,37 +185,24 @@
       <div class="reveal">
         <div class="section-label">Categorías</div>
         <h2>Explora nuestras <em>Actividades</em></h2>
-        <p class="section-intro">Desde robótica hasta fútbol, tenemos la actividad perfecta para cada talento.</p>
+        <p class="section-intro">Selecciona una categoría para ver todos los servicios disponibles en nuestra plataforma dedicada.</p>
       </div>
 
-      <div class="act-grid">
-        <div class="act-card reveal">
-          <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&q=80&w=600"
-            alt="Deportes" class="act-img">
-          <div class="act-body">
-            <div class="act-cat">Deporte</div>
-            <h3 class="act-title">Fútbol y Multideporte</h3>
-            <div class="act-age"><i data-lucide="users"></i> 6-14 años</div>
-          </div>
-        </div>
-        <div class="act-card reveal reveal-delay-1">
-          <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=600"
-            alt="Idiomas" class="act-img">
-          <div class="act-body">
-            <div class="act-cat">Idiomas</div>
-            <h3 class="act-title">Inglés Cambridge</h3>
-            <div class="act-age"><i data-lucide="users"></i> Todos los niveles</div>
-          </div>
-        </div>
-        <div class="act-card reveal reveal-delay-2">
-          <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&q=80&w=600"
-            alt="Tecnología" class="act-img">
-          <div class="act-body">
-            <div class="act-cat">Tecnología</div>
-            <h3 class="act-title">Robótica y Código</h3>
-            <div class="act-age"><i data-lucide="users"></i> 8-16 años</div>
-          </div>
-        </div>
+      <!-- Quick Categories Section (Links to separate page) -->
+      <div class="cat-quick-grid reveal">
+        <a href="pages/actividades.html?cat=deportes" class="cat-chip"><i data-lucide="trophy"></i><span>Deportes</span></a>
+        <a href="pages/actividades.html?cat=idiomas" class="cat-chip"><i data-lucide="languages"></i><span>Idiomas</span></a>
+        <a href="pages/actividades.html?cat=tecnologia" class="cat-chip"><i data-lucide="cpu"></i><span>Tecnología</span></a>
+        <a href="pages/actividades.html?cat=arte" class="cat-chip"><i data-lucide="palette"></i><span>Arte</span></a>
+        <a href="pages/actividades.html?cat=cocina" class="cat-chip"><i data-lucide="utensils"></i><span>Cocina</span></a>
+        <a href="pages/actividades.html?cat=ciencia" class="cat-chip"><i data-lucide="flask-conical"></i><span>Ciencia</span></a>
+        <a href="pages/actividades.html?cat=refuerzo" class="cat-chip"><i data-lucide="book-open"></i><span>Refuerzo</span></a>
+        <a href="pages/actividades.html?cat=baile" class="cat-chip"><i data-lucide="music"></i><span>Baile</span></a>
+        <a href="pages/actividades.html?cat=ajedrez" class="cat-chip"><i data-lucide="grid"></i><span>Ajedrez</span></a>
+      </div>
+
+      <div style="text-align: center; margin-top: 2rem;">
+        <a href="pages/actividades.html" class="btn-primary">Ver todas las actividades <i data-lucide="arrow-right"></i></a>
       </div>
     </section>
 
@@ -355,11 +352,31 @@
               <option value="idiomas">Idiomas</option>
               <option value="tecnologia">Tecnología</option>
               <option value="arte">Arte</option>
+              <option value="cocina">Cocina</option>
+              <option value="ciencia">Ciencia</option>
+              <option value="refuerzo">Refuerzo Escolar</option>
+              <option value="baile">Baile y Danza</option>
+              <option value="ajedrez">Ajedrez</option>
+              <option value="otro">Otro (Sugerir nueva...)</option>
             </select>
             <input type="number" id="srv-price" placeholder="Precio (€/mes)" required style="padding: 10px; border-radius: 8px; border: 1px solid var(--border);">
           </div>
           
-          <input type="text" id="srv-location" placeholder="Ubicación (Ciudad o Barrio)" required style="width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 8px; border: 1px solid var(--border);">
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-bottom: 10px;">
+            <input type="email" id="srv-email" placeholder="Email de contacto" required style="padding: 10px; border-radius: 8px; border: 1px solid var(--border);">
+            <input type="tel" id="srv-phone" placeholder="Teléfono" required style="padding: 10px; border-radius: 8px; border: 1px solid var(--border);">
+          </div>
+          
+          <div id="suggestion-container" style="display:none; margin-bottom: 15px; padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px; border-left: 4px solid var(--primary);">
+            <p style="font-size: 0.85rem; margin-bottom: 8px;">¿No encuentras tu categoría? Cuéntanos cuál buscas:</p>
+            <input type="text" id="srv-suggestion" placeholder="Ej. Yoga, Fotografía..." style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid var(--border);">
+          </div>
+          
+          <input type="text" id="srv-location" placeholder="Ubicación (Ciudad o Barrio)" required style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid var(--border);">
+          <div style="margin-bottom: 15px;">
+            <label for="srv-img" style="display: block; font-size: 0.85rem; color: var(--text-light); margin-bottom: 5px;">Imagen de la actividad</label>
+            <input type="file" id="srv-img" accept="image/*" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--background); color: var(--text);">
+          </div>
           
           <button type="submit" class="btn-primary" style="width: 100%;">Publicar Ahora</button>
         </form>
@@ -406,6 +423,7 @@
     </div>
 
     <!-- JS -->
+    <script src="js/data.js"></script>
     <script src="js/main.js" defer></script>
   </main>
 </body>
