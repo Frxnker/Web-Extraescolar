@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Mensajes | Extraescolar.com</title>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* RESET Y ESTRUCTURA BASE */
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: var(--background);
+    }
+
+    .social-page {
+      margin-top: 70px;
+      height: calc(100dvh - 70px);
+      display: flex;
+      position: relative;
+    }
+
+    /* BARRA LATERAL (SIDEBAR) */
+    .social-sidebar {
+      width: 380px;
+      min-width: 380px;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      z-index: 10;
+      transition: transform 0.3s ease;
+    }
+
+    .sidebar-header {
+      padding: 1.5rem;
+    }
+
+    .sidebar-header h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .search-box {
+      position: relative;
+      width: 100%;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 0.8rem 3rem 0.8rem 2.8rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--background);
+      color: var(--text);
+      font-size: 0.9rem;
+    }
+
+    .search-box i, .search-box svg:not(.search-confirm-btn svg) {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--primary);
+      width: 18px;
+    }
+
+    .search-confirm-btn {
+      position: absolute;
+      right: 6px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* LISTA DE CONTACTOS */
+    .contacts-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 0.5rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0.8rem 1rem;
+      border-radius: 12px;
+      cursor: pointer;
+      margin-bottom: 4px;
+    }
+
+    .contact-item:hover { background: var(--background); }
+
+    .contact-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .contact-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+    .contact-info { flex: 1; min-width: 0; }
+    .contact-info h4 { font-size: 0.95rem; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .contact-info p { font-size: 0.8rem; color: var(--text-light); }
+
+    /* VENTANA DE CHAT */
+    .social-chat {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: var(--background);
+      position: relative;
+    }
+
+    .chat-header {
+      height: 70px;
+      padding: 0 1.5rem;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .back-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text);
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    .messages-area {
+      flex: 1;
+      padding: 1.5rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .msg {
+      max-width: 80%;
+      padding: 0.8rem 1rem;
+      border-radius: 15px;
+      font-size: 0.9rem;
+      position: relative;
+    }
+
+    .msg.sent { align-self: flex-end; background: var(--primary); color: white; border-bottom-right-radius: 2px; }
+    .msg.received { align-self: flex-start; background: var(--surface); border: 1px solid var(--border); border-bottom-left-radius: 2px; }
+
+    .chat-input-area {
+      padding: 1rem;
+      background: var(--surface);
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .chat-input-area input {
+      flex: 1;
+      padding: 0.8rem 1.2rem;
+      border-radius: 25px;
+      border: 1px solid var(--border);
+      background: var(--background);
+      color: var(--text);
+    }
+
+    .btn-send {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* EMPTY STATE */
+    .empty-chat {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      opacity: 0.5;
+    }
+
+    /* RESPONSIVE MÓVIL */
+    @media (max-width: 850px) {
+      .social-sidebar {
+        width: 100%;
+        min-width: 100%;
+        position: absolute;
+        inset: 0;
+        z-index: 5;
+      }
+
+      .social-chat {
+        position: absolute;
+        inset: 0;
+        z-index: 10;
+        transform: translateX(100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .social-chat.active {
+        transform: translateX(0);
+      }
+
+      .back-btn { display: block; }
+      
+      .sidebar-header h2 { font-size: 1.3rem; }
+      .msg { max-width: 85%; }
+    }
+  </style>
+</head>
+<body class="dark-mode">
+
+  <!-- Mobile Navigation Overlay -->
+  <div class="mobile-overlay" id="mobile-overlay"></div>
+  <nav class="mobile-nav" id="mobile-nav">
+    <ul id="mobile-menu-list">
+      <li><a href="../index.html">Inicio</a></li>
+      <li><a href="../index.html#actividades">Actividades</a></li>
+      <li><a href="../index.html#proceso">Cómo Funciona</a></li>
+      <li><a href="../index.html#faq">FAQ</a></li>
+      <li><a href="../index.html#contacto">Contacto</a></li>
+      <li id="user-actions-mobile">
+        <button id="auth-trigger-mobile" class="btn-primary" style="width:100%; margin-top: 1rem;">Acceder</button>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- HEADER -->
+  <header>
+    <a href="../index.html" class="brand">
+      <i data-lucide="graduation-cap"></i> Web-<span>Extraescolar</span>
+    </a>
+    <nav class="nav-links">
+      <a href="../index.html">Inicio</a>
+      <a href="../index.html#actividades">Actividades</a>
+      <a href="../index.html#proceso">Cómo Funciona</a>
+    </nav>
+    <div class="nav-actions">
+      <div id="user-actions" class="user-actions-container"></div>
+      <button class="menu-toggle" id="menu-toggle">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="social-page">
+    <!-- SIDEBAR -->
+    <aside class="social-sidebar" id="social-sidebar">
+      <div class="sidebar-header">
+        <h2><i data-lucide="message-circle"></i> Mensajes</h2>
+        <div class="search-box">
+          <i data-lucide="search"></i>
+          <input type="text" id="user-search-input" placeholder="Email del usuario...">
+          <button id="btn-user-search" class="search-confirm-btn"><i data-lucide="arrow-right"></i></button>
+        </div>
+      </div>
+
+      <div id="friend-requests" class="requests-section" style="display: none; padding: 0 1.5rem 1rem;">
+        <p style="font-size: 0.7rem; font-weight: 700; color: var(--accent); margin-bottom: 0.5rem; text-transform: uppercase;">Solicitudes</p>
+        <div id="requests-list"></div>
+      </div>
+
+      <div id="contacts-list" class="contacts-list">
+        <!-- Amigos -->
+      </div>
+    </aside>
+
+    <!-- CHAT WINDOW -->
+    <section class="social-chat" id="chat-window">
+      <div class="empty-chat">
+        <i data-lucide="send" style="width: 60px; height: 60px; margin-bottom: 1rem;"></i>
+        <h3>Tus Mensajes</h3>
+        <p>Busca a un usuario por email o selecciona un amigo para empezar.</p>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="../assets/js/main.js"></script>
+</body>
+</html>
